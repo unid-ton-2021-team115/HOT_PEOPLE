@@ -32,19 +32,23 @@
             android:src="@drawable/ic_baseline_gps_fixed_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tl_ac_main_bottom_menu"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_alignParentBottom="true"
-            android:background="#FFFFFF"
-            android:elevation="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/mapview"
-            app:tabIndicatorColor="#40D39F"
-            tools:ignore="MissingConstraints"></com.google.android.material.tabs.TabLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_rect"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@drawable/round_rect"
+                android:backgroundTint="#FFFFE3"
+                android:src="@drawable/ic_baseline_restaurant_24" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 
