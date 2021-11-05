@@ -15,13 +15,16 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
+import ins.hands.unid.data.PlaceData
 import ins.hands.unid.databinding.ActivityHomeBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeActivity : BaseActivity(), OnMapReadyCallback {
+class HomeActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     val bind by binding<ActivityHomeBinding>(R.layout.activity_home)
+    val viewModel : HomeViewModel by viewModel()
     lateinit var mapFragment: SupportMapFragment
-    lateinit var locationManager : LocationManager
-    lateinit var locationListener : LocationListener
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +35,6 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         Log.d("HomeActivity","map내놔라")
-        locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         findViewById<ImageView>(R.id.bt_centor).setOnClickListener {
             setMapLocation(googlemap!!)
             Log.d("HomeActivity","RequestCentor")
@@ -45,8 +47,11 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
             }
             }, Looper.getMainLooper())
 
+        observePlaceData()
 
+        viewModel.getHotPlace()
     }
+
     var location : Location? = null
     lateinit var fusedLocationClient : FusedLocationProviderClient
     var locationX = 0f
@@ -65,6 +70,29 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
         if(location==null) return
         Log.d("HomeActivity","Location ${location!!.latitude} / ${location!!.longitude}")
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location!!.latitude,location!!.longitude),15f))
+    }
+    fun observePlaceData(){
+        viewModel.placeList.observe(this,{
+            googlemap?.clear()
+            it.forEach {
+                googlemap?.addMarker(markerBind(it))
+            }
+        })
+    }
+
+    fun markerBind(data : PlaceData) : MarkerOptions{
+        return MarkerOptions().apply{
+            position(LatLng(data.latitude,data.longitude))
+            title(data.name)
+
+        }
+    }
+    var currentMarker : Marker? = null
+    override fun onMarkerClick(marker: Marker?): Boolean {
+       // if(currentMarker!=null) currentMarker?.setIcon()
+        currentMarker = marker
+        //currentMarker?.setIcon()
+        return true
     }
 
 }
