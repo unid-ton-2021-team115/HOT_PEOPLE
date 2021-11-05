@@ -7,7 +7,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const cors = require('cors');
-const passport = require('passport') 
+const passport = require('passport');
+require('moment-timezone');
+require('moment').tz.setDefault("Asia/Seoul");;
 require('dotenv').config();
 
 app.set('port', process.env.PORT);
