@@ -1,14 +1,9 @@
 const router = require('express').Router();
 const dbConn= require(`${process.cwd()}/dbConnection`);
-const moment = require('moment');
+const kakaoAuth = require(`${process.cwd()}/controllers/kakaoAuth`);
 
-router.get('/:status', async (req, res) => {
+router.get('/:status', kakaoAuth.checkLogin, async (req, res) => {
     try {
-        if(!req.user) 
-            return res.status(401).json({
-                status: "NOT LOGIN"
-            });
-
         let sql = 'select * from matching where host_id = ? and status = ?'; 
         let [results] = await dbConn.query(sql, [req.user.id, req.params.status]);
 
@@ -23,7 +18,5 @@ router.get('/:status', async (req, res) => {
         });
     }
 });
-
-
 
 module.exports = router;
