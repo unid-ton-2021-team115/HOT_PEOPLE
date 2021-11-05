@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const testRouter = require('./api/testRouter');
 
-router.use('/test', testRouter);
+router.use('/google_map', require('./api/googleMapRouter'));
 
 module.exports = router;
