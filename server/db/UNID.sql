@@ -100,7 +100,9 @@ set FOREIGN_KEY_CHECKS = 0;
 
 --truncate access_record;
 
---insert into user value 
+insert into place value ('ChIJBZMvC96hfDURYCUD0j-qQIA', '준호네돈가스', '대한민국 서울특별시 동작구 흑석동 190-37', 37.507487, 126.9592763, '02-825-8954', 1, 8); 
+insert into place value ('ChIJExJA9d2hfDUR8rFDuETY_pU', '터방내', '대한민국 서울특별시 동작구 흑석동 184-19', 37.5080055, 126.960744, '02-813-4434', 1, 10); 
+
 
 set FOREIGN_KEY_CHECKS = 1;
 
