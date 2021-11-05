@@ -55,4 +55,7 @@ val viewModelModule = module{
     viewModel {
         MainViewModel()
     }
+    viewModel {
+        HomeViewModel()
+    }
 }
