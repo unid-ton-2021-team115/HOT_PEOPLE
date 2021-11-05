@@ -2,8 +2,11 @@
 CREATE TABLE place
 (
     `id`               VARCHAR(45)    NOT NULL, 
+    `name`             VARCHAR(45)    NULL, 
+    `address`          TEXT           NULL, 
     `latitude`         DOUBLE         NULL, 
     `longitude`        DOUBLE         NULL, 
+    `phone_number`     TEXT           NULL, 
     `is_hot`           TINYINT        NULL, 
     `recent_post_cnt`  INT            NULL, 
      PRIMARY KEY (id)
@@ -81,6 +84,8 @@ CREATE TABLE place_types
 ALTER TABLE place_types
     ADD CONSTRAINT FK_place_types_place_id_place_id FOREIGN KEY (place_id)
         REFERENCES place (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
 
 
 
