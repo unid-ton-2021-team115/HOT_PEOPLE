@@ -26,9 +26,29 @@ router.get('/kakao/logout', async (req, res) => {
         await axios.post('https://kapi.kakao.com/v1/user/logout', null, {headers: {Authorization: `Bearer ${req.user?.accessToken}`}});
         req.logout();
         req.session.destroy();
-        return res.redirect('/dev');
+        return res.status(200).json({
+            status: "OK",
+        });
     } catch (err) {
-        console.log(err)
+        return res.status(401).json({
+            status: "LOGOUT_FAIL",
+        });
+    }
+});
+
+router.get('/kakao/token', passport.authenticate('kakao-token'), function (req, res) {
+    if (req.user) {
+        console.log(req.user);
+        return res.status(200).json({
+            status: "OK",
+            data: {
+                ...req.user
+            }
+        });
+    } else {
+        return res.status(401).json({
+            status: "LOGIN_FAIL",
+        });
     }
 });
 
