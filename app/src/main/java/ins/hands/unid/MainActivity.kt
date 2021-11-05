@@ -34,6 +34,7 @@ class MainActivity : BaseActivity() {
             }
             else if (token != null) {
                 Log.i(TAG, "로그인 성공 ${token.accessToken}")
+                viewModel.getUserData(token.accessToken)
             }
         }
     }

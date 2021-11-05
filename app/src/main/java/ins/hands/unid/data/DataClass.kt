@@ -22,11 +22,12 @@ data  class MatchingData(
 data class UserData(
     val id : Int,
     val nickname : String,
-    val profileUrl : String,
+    val profile_url : String,
     val gender : String,
     val age : Int,
-    val ageRange : Int,
-    val likes : Int
+    val ageRange : String,
+    val likes : Int,
+    val accessToken : String
 )
 data class MatchingJoinData(
     val id : Int,
