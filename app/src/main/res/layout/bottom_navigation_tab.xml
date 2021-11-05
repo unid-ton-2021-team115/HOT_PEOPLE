@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="56dp"
+    android:layout_height="wrap_content"
     android:background="#ffffff"
     android:elevation="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:paddingTop="5dp"
@@ -12,58 +14,84 @@
 
     <RelativeLayout
         android:id="@+id/btn_bottom_navi_home_tab"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#4dbeaed8"
         android:layout_weight="1">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/icon" />
-    </RelativeLayout>
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/baseline_restaurant_24" />
+    </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/btn_bottom_navi_search_tab"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:id="@+id/btn_bottom_navi_home_cafe"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#ffbeaed8"
         android:layout_weight="1">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
             android:layout_centerInParent="true"
-            android:src="@drawable/icon" />
+            android:src="@drawable/baseline_local_cafe_24" />
     </RelativeLayout>
-
     <RelativeLayout
-        android:id="@+id/btn_bottom_navi_like_tab"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:id="@+id/btn_bottom_navi_home_liquor"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#4dbeaed8"
         android:layout_weight="1">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
             android:layout_centerInParent="true"
-            android:src="@drawable/icon" />
+            android:src="@drawable/baseline_liquor_24" />
     </RelativeLayout>
-
     <RelativeLayout
-        android:id="@+id/btn_bottom_navi_my_page_tab"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:id="@+id/btn_bottom_navi_home_celeb"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#4dbeaed8"
         android:layout_weight="1">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
             android:layout_centerInParent="true"
-            android:src="@drawable/icon" />
+            android:src="@drawable/baseline_celebration_24" />
     </RelativeLayout>
-
 </LinearLayout>
