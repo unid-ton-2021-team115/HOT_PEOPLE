@@ -3,12 +3,14 @@ package ins.hands.unid.data
 data class PlaceData(
     val id: String,
     val name : String,
+    val address: String,
     val latitude: Double,
     val longitude: Double,
     val phone_number : String,
     val is_hot: Int,
     val recent_post_cnt: Int
 )
+
 data  class MatchingData(
     val id: Int,
     val hostId : Int,

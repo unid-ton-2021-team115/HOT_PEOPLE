@@ -14,10 +14,10 @@ class HomeViewModel : ViewModel(), KoinComponent {
 
     var placeList = MutableLiveData<MutableList<PlaceData>>()
 
-    fun getHotPlace(){
+    fun getHotPlace(placeTheme : Int = -1){
         viewModelScope.launch {
             dataSource.getHotPlace().apply{
-                placeList.value = this.data
+                placeList.value = this.data.filter{true}.toMutableList()
             }
         }
     }

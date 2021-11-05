@@ -1,6 +1,9 @@
 package ins.hands.unid
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.*
+import android.graphics.drawable.BitmapDrawable
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -8,20 +11,34 @@ import android.os.Bundle
 import android.os.Looper
 import android.os.PersistableBundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import ins.hands.unid.data.PlaceData
 import ins.hands.unid.databinding.ActivityHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.lang.Exception
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 
-class HomeActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+import androidx.core.content.ContextCompat
+
+import android.graphics.drawable.Drawable
+
+import androidx.annotation.DrawableRes
+
+import com.google.android.gms.maps.model.BitmapDescriptor
+
+
+
+
+class HomeActivity : BaseActivity(), OnMapReadyCallback {
     val bind by binding<ActivityHomeBinding>(R.layout.activity_home)
     val viewModel : HomeViewModel by viewModel()
     lateinit var mapFragment: SupportMapFragment
@@ -48,10 +65,16 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClick
             }, Looper.getMainLooper())
 
         observePlaceData()
+        observeMapTheme()
 
-        viewModel.getHotPlace()
+        bindNavigationBar()
+        bitmapMarker()
+
+        viewModel.getHotPlace(-1)
     }
 
+    val mapTheme = MutableLiveData(-1)
+    var btList =mutableListOf<View>()
     var location : Location? = null
     lateinit var fusedLocationClient : FusedLocationProviderClient
     var locationX = 0f
@@ -59,14 +82,37 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClick
 
     var googlemap : GoogleMap? = null
     override fun onMapReady(map: GoogleMap?) {
-        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(37.4684266 , 126.93244),10f))
+        map?.setOnCameraMoveListener {
+            if(map?.cameraPosition.zoom<13f)
+            {
+                map?.moveCamera(CameraUpdateFactory.newLatLngZoom(map?.cameraPosition.target,13f))
+            }
+        }
+        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(37.4684266 , 126.93244),15f))
         googlemap = map
         Log.d("HomeActivity","map ready")
         setMapLocation(map!!)
+        map.setOnMapClickListener { closeInfo() }
+        map.setOnMarkerClickListener {
+            if(currentMarker!=null) currentMarker?.setIcon(markerSmall)
+
+            currentMarker = it
+            it.setIcon(markerBig)
+
+
+            findViewById<View>(R.id.info_layout).visibility=View.VISIBLE
+            findViewById<TextView>(R.id.tv_title).setText(it.title)
+            var address = viewModel.placeList.value?.find{it.name==currentMarker?.title}?.address
+            if(address?.startsWith("대한민국")==true) address = address.substring(5)
+            findViewById<TextView>(R.id.tv_address).setText(address)
+            true
+
+        }
     }
     @SuppressLint("MissingPermission")
     fun setMapLocation(map : GoogleMap)
     {
+
         if(location==null) return
         Log.d("HomeActivity","Location ${location!!.latitude} / ${location!!.longitude}")
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location!!.latitude,location!!.longitude),15f))
@@ -79,20 +125,87 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClick
             }
         })
     }
+    var markerSmall : BitmapDescriptor? = null
+    var markerBig : BitmapDescriptor? = null
+    fun bitmapMarker(){
+        markerSmall = bitmapDescriptorFromVector(this@HomeActivity,R.drawable.ic_baseline_place_24)
+        markerBig = bitmapDescriptorFromVector(this@HomeActivity,R.drawable.ic_baseline_place_32)
 
+    }
     fun markerBind(data : PlaceData) : MarkerOptions{
         return MarkerOptions().apply{
             position(LatLng(data.latitude,data.longitude))
             title(data.name)
+            try {
+
+                icon(markerSmall)
+            }catch(e:Exception)
+            {
+                e.printStackTrace()
+            }
 
         }
     }
     var currentMarker : Marker? = null
-    override fun onMarkerClick(marker: Marker?): Boolean {
-       // if(currentMarker!=null) currentMarker?.setIcon()
-        currentMarker = marker
-        //currentMarker?.setIcon()
-        return true
+
+    fun closeInfo() {
+        if(currentMarker!=null) currentMarker?.setIcon(markerSmall)
+        findViewById<View>(R.id.info_layout).visibility = View.GONE
     }
 
+    override fun onBackPressed() {
+
+        if(findViewById<View>(R.id.info_layout).visibility == View.VISIBLE)
+            closeInfo()
+        else finishAffinity()
+    }
+    val colorOnCheck = Color.parseColor("#ffbeaed8")
+    val colorDisCheck = Color.parseColor("#4dbeaed8")
+    fun observeMapTheme(){
+        mapTheme.observe(this,{
+            viewModel.getHotPlace(it)
+        })
+    }
+
+    fun bindNavigationBar(){
+        btList.add(findViewById(R.id.btn_bottom_navi_home_cafe))
+        btList.add(findViewById(R.id.btn_bottom_navi_home_celeb))
+        btList.add(findViewById(R.id.btn_bottom_navi_home_liquor))
+        btList.add(findViewById(R.id.btn_bottom_navi_home_tab))
+
+        btList.forEach {
+            val pos = btList.indexOf(it)
+            it.background.setTint(colorDisCheck)
+            it.setOnClickListener {
+                btList.forEach { it.background.setTint(colorDisCheck) }
+                if(mapTheme.value==pos) mapTheme.value= -1
+                else {
+                    mapTheme.value = pos
+                    it.background.setTint(colorOnCheck)
+                }
+            }
+        }
+    }
+    private fun bitmapDescriptorFromVector(
+        context: Context,
+        @DrawableRes vectorResId: Int
+    ): BitmapDescriptor? {
+        val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
+        val ratio = 1.5
+        vectorDrawable!!.setBounds(
+            0,
+            0,
+            (vectorDrawable.intrinsicWidth*ratio).toInt(),
+            (vectorDrawable.intrinsicHeight*ratio).toInt()
+        )
+        val bitmap = Bitmap.createBitmap(
+            (vectorDrawable.intrinsicWidth*ratio).toInt(),
+            (vectorDrawable.intrinsicHeight*ratio).toInt(),
+            Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(bitmap)
+        vectorDrawable.alpha=255
+        vectorDrawable.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
+    }
 }
