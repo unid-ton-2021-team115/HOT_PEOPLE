@@ -13,11 +13,13 @@ CREATE TABLE place
 -- user_kakao Table Create SQL
 CREATE TABLE user_kakao
 (
-    `id`         INT            NOT NULL, 
-    `gender`     VARCHAR(45)    NULL, 
-    `age`        INT            NULL, 
-    `age_range`  INT            NULL, 
-    `likes`      INT            NULL, 
+    `id`           INT            NOT NULL, 
+    `nickname`     VARCHAR(45)    NULL, 
+    `profile_url`  TEXT           NULL, 
+    `gender`       VARCHAR(45)    NULL, 
+    `age`          INT            NULL, 
+    `age_range`    VARCHAR(45)    NULL, 
+    `likes`        INT            NULL, 
      PRIMARY KEY (id)
 );
 
@@ -79,6 +81,8 @@ CREATE TABLE place_types
 ALTER TABLE place_types
     ADD CONSTRAINT FK_place_types_place_id_place_id FOREIGN KEY (place_id)
         REFERENCES place (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
 
 
 
