@@ -36,6 +36,7 @@ android {
         jvmTarget = '1.8'
     }
     configurations { implementation.exclude group: 'org.jetbrains', module: 'annotations' }
+
 }
 
 dependencies {
@@ -109,4 +110,7 @@ dependencies {
 
     //gson dependency
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    implementation "com.kakao.sdk:v2-user:2.8.2" // 카카오 로그인
+
 }

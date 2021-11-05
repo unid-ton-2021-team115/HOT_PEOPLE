@@ -1,6 +1,7 @@
 package ins.hands.unid
 
 import android.app.Application
+import com.kakao.sdk.common.KakaoSdk
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        KakaoSdk.init(this, "97d051e04925af6d911687cfe49e456e")
         startKoin {
             androidLogger()
             androidContext(this@MyApplication)
@@ -45,5 +47,8 @@ val networkModule = module{
 val viewModelModule = module{
     viewModel{
         ApiTestViewModel()
+    }
+    viewModel {
+        MainViewModel()
     }
 }
