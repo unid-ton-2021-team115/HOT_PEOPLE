@@ -10,7 +10,10 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh "npm install"
+                dir('server'){
+                        sh 'ls -al'
+                        sh "npm install"
+                }
             }
         }
         stage('deploy') {
