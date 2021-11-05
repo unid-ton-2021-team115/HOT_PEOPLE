@@ -5,7 +5,7 @@ CREATE TABLE place
     `latitude`         DOUBLE         NULL, 
     `longitude`        DOUBLE         NULL, 
     `is_hot`           TINYINT        NULL, 
-    `recent_post_cnt`  int            NULL, 
+    `recent_post_cnt`  INT            NULL, 
      PRIMARY KEY (id)
 );
 
@@ -13,10 +13,11 @@ CREATE TABLE place
 -- user_kakao Table Create SQL
 CREATE TABLE user_kakao
 (
-    `id`      INT            NOT NULL, 
-    `gender`  VARCHAR(45)    NULL, 
-    `age`     INT            NULL, 
-    `likes`   INT            NULL, 
+    `id`         INT            NOT NULL, 
+    `gender`     VARCHAR(45)    NULL, 
+    `age`        INT            NULL, 
+    `age_range`  INT            NULL, 
+    `likes`      INT            NULL, 
      PRIMARY KEY (id)
 );
 
@@ -69,7 +70,7 @@ ALTER TABLE matching_join
 -- place_types Table Create SQL
 CREATE TABLE place_types
 (
-    `id`        int            NOT NULL    AUTO_INCREMENT, 
+    `id`        INT            NOT NULL    AUTO_INCREMENT, 
     `place_id`  VARCHAR(45)    NULL, 
     `type`      VARCHAR(45)    NULL, 
      PRIMARY KEY (id)
@@ -78,6 +79,7 @@ CREATE TABLE place_types
 ALTER TABLE place_types
     ADD CONSTRAINT FK_place_types_place_id_place_id FOREIGN KEY (place_id)
         REFERENCES place (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
 
 
 
