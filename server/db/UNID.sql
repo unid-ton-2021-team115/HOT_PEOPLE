@@ -37,29 +37,25 @@ CREATE TABLE matching
     `matching_datetime`  DATETIME       NULL, 
     `description`        TEXT           NULL, 
     `status`             VARCHAR(45)    NULL, 
-    `guest_id`           INT            NULL, 
      PRIMARY KEY (id)
 );
-
-ALTER TABLE matching
-    ADD CONSTRAINT FK_matching_place_id_place_id FOREIGN KEY (place_id)
-        REFERENCES place (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE matching
     ADD CONSTRAINT FK_matching_host_id_user_kakao_id FOREIGN KEY (host_id)
         REFERENCES user_kakao (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE matching
-    ADD CONSTRAINT FK_matching_guest_id_user_kakao_id FOREIGN KEY (guest_id)
-        REFERENCES user_kakao (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+    ADD CONSTRAINT FK_matching_place_id_place_id FOREIGN KEY (place_id)
+        REFERENCES place (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 -- matching_join Table Create SQL
 CREATE TABLE matching_join
 (
-    `id`           INT    NOT NULL    AUTO_INCREMENT, 
-    `matching_id`  INT    NULL, 
-    `guest_id`     INT    NULL, 
+    `id`           INT            NOT NULL    AUTO_INCREMENT, 
+    `matching_id`  INT            NULL, 
+    `guest_id`     INT            NULL, 
+    `status`       VARCHAR(45)    NULL, 
      PRIMARY KEY (id)
 );
 
@@ -84,6 +80,7 @@ CREATE TABLE place_types
 ALTER TABLE place_types
     ADD CONSTRAINT FK_place_types_place_id_place_id FOREIGN KEY (place_id)
         REFERENCES place (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
 
 
 
