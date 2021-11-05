@@ -1,5 +1,6 @@
 package ins.hands.unid
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -34,7 +35,11 @@ class MainActivity : BaseActivity() {
             }
             else if (token != null) {
                 Log.i(TAG, "로그인 성공 ${token.accessToken}")
-                viewModel.getUserData(token.accessToken)
+                viewModel.getUserData(token.accessToken) {
+                    runOnUiThread {
+                        startActivity(Intent())
+                    }
+                }
             }
         }
     }

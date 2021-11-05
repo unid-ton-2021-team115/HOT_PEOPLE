@@ -14,9 +14,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class MyApplication : Application() {
+    companion object {
+        lateinit var prefs: PreferenceUtil
+    }
     override fun onCreate() {
         super.onCreate()
-        KakaoSdk.init(this, "97d051e04925af6d911687cfe49e456e")
+        prefs = PreferenceUtil(applicationContext)
+        KakaoSdk.init(this, "ce1071ca2fd405b7ba6827444533f951")
         startKoin {
             androidLogger()
             androidContext(this@MyApplication)
