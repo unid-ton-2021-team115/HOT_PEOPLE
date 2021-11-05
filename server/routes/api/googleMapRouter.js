@@ -29,7 +29,7 @@ router.get('/place/:id', async (req, res) => {
     try {
         let place = await axios.get('https://maps.googleapis.com/maps/api/place/details/json', {
             params : {
-                fields : 'formatted_address,name,rating,opening_hours,geometry,types,formatted_phone_number',
+                fields : 'formatted_address,name,geometry,types,formatted_phone_number',
                 place_id : req.params.id,
                 language: 'ko',
                 key : process.env.GOOGLE_MAP_API_KEY
