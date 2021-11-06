@@ -63,7 +63,16 @@ class RemoteDataSourcePlaceImpl(private val service : GetPlaceService) : RemoteD
     override suspend fun makeupMatching(id: Int, joinId: Int): StatusResponse = service.makeupMatching(id,TOKEN,joinId)
     override suspend fun closeMatching(id: Int): StatusResponse = service.closeMatching(id,TOKEN)
     override suspend fun getPlaceType(type: String): HotPlaceResponse =service.searchPlaceType(type)
-    override suspend fun getSuccessMatching(): GetMatchingListResponse =service.successMatching(TOKEN)
+    override suspend fun getSuccessMatching(): GetMatchingListResponse {
+        try {
+            return service.successMatching(TOKEN)
+        }
+        catch(e:Exception)
+        {
+            e.printStackTrace()
+        }
+        return GetMatchingListResponse("no", mutableListOf())
+    }
 }
 
 interface GetPlaceService {
