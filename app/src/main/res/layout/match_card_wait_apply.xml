@@ -127,8 +127,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-
-
             android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="이름"
             android:textColor="@color/black"
@@ -148,7 +146,6 @@
             android:textColor="@color/black"
             android:fontFamily="@font/spoqa_han_sans_regular"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/profileCardName"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/profileCardGender"
             android:layout_marginRight="10dp"
