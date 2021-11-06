@@ -51,8 +51,13 @@ def web_scraping(email, password):
     district_list = ['마포', '종로', '용산', '강남', '송파', '영등포', '한남', '신촌', '홍대', '을지로', '여의도', '성수', '연남', '북촌', '압구정', '판교', '분당', '대학로', '건대', '잠실', '이태원']
     
     # 크롬 원격 접속 (인스타그램)
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+    # options.add_argument("disable-gpu")
+    # options.add_argument("--disable-gpu")
+    
     url = 'https://www.instagram.com'
-    driver = webdriver.Chrome(executable_path='./chromedriver')
+    driver = webdriver.Chrome(executable_path='./chromedriver', options=options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(10) 
