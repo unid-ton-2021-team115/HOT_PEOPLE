@@ -43,13 +43,18 @@ class MatchWaitViewModel : ViewModel(), KoinComponent {
             connection.setDoInput(true) //url로 input받는 flag 허용
             CoroutineScope(Dispatchers.IO).launch {
                 connection.connect() //연결
-
-                val inputStream = connection.getInputStream() // get inputstream
-                val decode = BitmapFactory.decodeStream(inputStream)
-                CoroutineScope(Dispatchers.Main).launch{
-                    image.setImageBitmap(decode)
+                try {
+                    val inputStream = connection.getInputStream() // get inputstream
+                    val decode = BitmapFactory.decodeStream(inputStream)
+                    CoroutineScope(Dispatchers.Main).launch {
+                        image.setImageBitmap(decode)
+                    }
+                    Log.d("UrlToBitmap", "Finished")
                 }
-                Log.d("UrlToBitmap", "Finished")
+                catch(e:Exception)
+                {
+                    e.printStackTrace()
+                }
             }
         }
     }

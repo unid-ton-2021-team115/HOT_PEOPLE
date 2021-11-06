@@ -32,7 +32,7 @@ class HomeViewModel : ViewModel(), KoinComponent {
                     0->"식당"
                     1->"카페"
                     2->"술집"
-                    3->"파티"
+                    3->"문화"
                     else->""
                 }
                 dataSource.getPlaceType(type).apply{
