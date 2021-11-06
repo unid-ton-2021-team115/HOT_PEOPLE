@@ -18,6 +18,8 @@ class MainActivity : BaseActivity() {
     val bind by binding<ActivityMainBinding>(R.layout.activity_main)
     val viewModel : MainViewModel  by viewModel()
     var hash = ""
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         requestPermission {  }
