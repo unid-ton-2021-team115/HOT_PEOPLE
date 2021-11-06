@@ -38,11 +38,12 @@ val joinMatch:(id:Int)->Unit) : RecyclerView.Adapter<MatchFindAdapter.ViewHolder
                     matchCancelBt.visibility = View.VISIBLE
                     matchApplyButton.visibility=View.GONE
                     matchCancelBt.setOnClickListener {
-                        cancelMatch(data.id)
+                        cancelMatch(data.joinRequests.filter { it.guest.id ==prefs.getInt("user_id",0)  }[0].id)
                     }
                 }
                 else{
                     matchCancelBt.visibility=View.GONE
+                    matchApplyButton.visibility=View.VISIBLE
 
                 }
                 matchApplyButton.setOnClickListener {

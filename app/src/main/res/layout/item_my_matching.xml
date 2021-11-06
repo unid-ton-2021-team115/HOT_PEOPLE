@@ -42,12 +42,14 @@
 
         <TextView
             android:id="@+id/textView9"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
 
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="24dp"
             android:text="@{address}"
-            android:textSize="18sp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/bt_close"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8"
             tools:text="미국 뉴욕주 뉴욕시 셰이 스타디움" />
@@ -67,14 +69,26 @@
 
         <TextView
             android:id="@+id/bt_open"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+
             android:text="수락한 사람"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <ImageView
+            android:id="@+id/bt_tog"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="120dp"
+            android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/bt_open"
+            app:layout_constraintStart_toStartOf="@+id/bt_open"
+            app:layout_constraintTop_toTopOf="@+id/bt_open" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/guest_layout"

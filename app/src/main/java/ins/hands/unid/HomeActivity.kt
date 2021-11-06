@@ -36,8 +36,7 @@ import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
 
 import com.google.android.gms.maps.model.BitmapDescriptor
-
-
+import java.lang.IllegalArgumentException
 
 
 class HomeActivity : BaseActivity(), OnMapReadyCallback {
@@ -105,7 +104,12 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
         setMapLocation(map!!)
         map.setOnMapClickListener { closeInfo() }
         map.setOnMarkerClickListener {
-            if(currentMarker!=null) currentMarker?.setIcon(markerSmall)
+            try {
+                if (currentMarker != null) currentMarker?.setIcon(markerSmall)
+            }
+            catch(e:IllegalArgumentException){
+                e.printStackTrace()
+            }
 
             currentMarker = it
             it.setIcon(markerBig)

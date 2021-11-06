@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.text.format.DateFormat.is24HourFormat
+import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.EditText
@@ -65,11 +66,12 @@ class MatchWaitActivity : BaseActivity() {
             adapter=this@MatchWaitActivity.adapter
             if(adapterMode==1) {
                 place = "대기중인 매칭"
-
+                bind.btAddMatch.visibility= View.GONE
                 viewModel.getMyMatchingWait(prefs.getInt("user_id",0))
             }
             if(adapterMode==2) {
                 place = "참여한 매칭"
+                bind.btAddMatch.visibility= View.GONE
                 viewModel.getMyMatchingMakeup(prefs.getInt("user_id",0))
             }
         }

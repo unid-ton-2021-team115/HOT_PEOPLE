@@ -19,7 +19,13 @@ class MyMatchingActivity : BaseActivity() {
             viewModel.getPlaceDataById(bind,id)
         }).apply{
             delete={
-
+                viewModel.deleteMyMatching(it)
+            }
+            makeUp={id, joinId ->
+                viewModel.makeupMatching(id,joinId)
+            }
+            cancel={
+                viewModel.cancelMatch(it)
             }
         }
         bind.apply{

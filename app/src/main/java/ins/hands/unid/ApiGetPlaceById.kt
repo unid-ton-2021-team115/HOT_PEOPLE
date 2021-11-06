@@ -8,6 +8,7 @@ import ins.hands.unid.data.PlaceData
 import ins.hands.unid.data.UserData
 import retrofit2.http.*
 import java.lang.Exception
+import javax.net.ssl.SSLEngineResult
 
 interface RemoteDateSourcePlace{
     suspend fun getPlace(id : String) : PlaceResponse
@@ -24,6 +25,8 @@ interface RemoteDateSourcePlace{
     suspend fun getMatchingSearchId(id:String) : GetMatchingListResponse
     suspend fun createMatching(body : CreateMatchBody) : CreateMatchResponse
     suspend fun getMatchingByGuestId(id : Int, status : String) : MatchingListResponse
+    suspend fun makeupMatching(id : Int, joinId : Int) : StatusResponse
+    suspend fun closeMatching(id:Int) : StatusResponse
 }
 class RemoteDataSourcePlaceImpl(private val service : GetPlaceService) : RemoteDateSourcePlace{
     override suspend fun getPlace(id : String) : PlaceResponse = service.getPlace(id)
@@ -49,12 +52,15 @@ class RemoteDataSourcePlaceImpl(private val service : GetPlaceService) : RemoteD
     override suspend fun getMySuccessMatching(): MatchingListResponse =service.getMySuccessMatching()
     override suspend fun getMyCancelMatching(): MatchingListResponse =service.getMyCancelMatching()
     override suspend fun joinMatching(body: MatchingIdClass): JoinResponse = service.joinMatcing(TOKEN,body)
-    override suspend fun cancelMatching(id: Int): StatusResponse =service.cancelMatching(id)
+    override suspend fun cancelMatching(id: Int): StatusResponse =service.cancelMatching(id,TOKEN)
     override suspend fun getMatchingById(id: Int): GetMatchingResponse =service.getMatchingById(id)
     override suspend fun getMatchingSearch(status: String): GetMatchingListResponse =service.getMatchingSearch(status)
     override suspend fun getMatchingSearchId(id: String): GetMatchingListResponse =service.getMatchingSearchId(id)
     override suspend fun createMatching(body : CreateMatchBody) : CreateMatchResponse = service.createMatching(TOKEN,body)
     override suspend fun getMatchingByGuestId(id : Int, status : String) : MatchingListResponse = service.getMatchingByGuestId(id,status)
+    override suspend fun makeupMatching(id: Int, joinId: Int): StatusResponse = service.makeupMatching(id,TOKEN,joinId)
+    override suspend fun closeMatching(id: Int): StatusResponse = service.closeMatching(id,TOKEN)
+
 }
 
 interface GetPlaceService {
@@ -79,13 +85,18 @@ interface GetPlaceService {
     @GET("/api/matching/search")
     suspend fun getMatchingSearch(@Query("status") status : String) : GetMatchingListResponse
     @DELETE("/api/matching_join/{id}")
-    suspend fun cancelMatching(@Path("id") id:Int) : StatusResponse
+    suspend fun cancelMatching(@Path("id") id:Int, @Query("access_token") token:String) : StatusResponse
     @GET("/api/matching/search")
     suspend fun getMatchingSearchId(@Query("place_id") id : String) : GetMatchingListResponse
     @POST("/api/matching")
     suspend fun createMatching(@Query("access_token") token :String, @Body body: CreateMatchBody) : CreateMatchResponse
     @GET("/api/matching_join/search")
     suspend fun getMatchingByGuestId(@Query("guest_id") id : Int, @Query("status") status : String) : MatchingListResponse
+    @GET("/api/matching/{id}/makeup")
+    suspend fun makeupMatching(@Path("id") id : Int, @Query("access_token") token : String, @Query("matching_join_id") joinId : Int) : StatusResponse
+    @GET("/api/matching/{id}/cancel")
+    suspend fun closeMatching(@Path("id") id : Int, @Query("access_token") token : String) : StatusResponse
+
 
 }
 

@@ -1,8 +1,11 @@
 package ins.hands.unid
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.telephony.TelephonyManager
 import android.util.Log
 import android.view.WindowManager
 import com.gun0912.tedpermission.PermissionListener
@@ -19,14 +22,16 @@ class MainActivity : BaseActivity() {
     val bind by binding<ActivityMainBinding>(R.layout.activity_main)
     val viewModel : MainViewModel  by viewModel()
     var hash = ""
+    var telnum=""
 
-
+    @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         requestPermission {  }
         super.onCreate(savedInstanceState)
-
-
+        val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        telnum = tm.line1Number
+        Log.d("TelephonNumber","${telnum}")
         setContentView(R.layout.activity_main)
         hash=Utility.getKeyHash(this)
         bind.apply{
@@ -73,7 +78,9 @@ class MainActivity : BaseActivity() {
                 android.Manifest.permission.READ_EXTERNAL_STORAGE,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                android.Manifest.permission.ACCESS_FINE_LOCATION
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.READ_PHONE_NUMBERS,
+                android.Manifest.permission.READ_PHONE_STATE
             )
             .check()
     }

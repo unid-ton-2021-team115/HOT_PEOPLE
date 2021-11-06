@@ -15,7 +15,9 @@ import ins.hands.unid.databinding.MatchCardWaitApplyBinding
 class MyMatchingAdapter(val getProfileImage : (image : ImageView,url : String)->Unit,
                         val getPlaceInfo:(bind : ItemMyMatchingBinding, id : String)->Unit) : RecyclerView.Adapter<MyMatchingAdapter.ViewHolder>() {
     var dataList = mutableListOf<MatchingStatusData>()
-    lateinit var delete : (id : String)->Unit
+    lateinit var makeUp : (id : Int, joinId : Int)->Unit
+    lateinit var delete : (id : Int)->Unit
+    lateinit var cancel : (id : Int)->Unit
     inner class ViewHolder(val binding : ItemMyMatchingBinding, val context:Context) : RecyclerView.ViewHolder(binding.root){
         fun bind(data : MatchingStatusData){
             binding.apply{
@@ -23,21 +25,28 @@ class MyMatchingAdapter(val getProfileImage : (image : ImageView,url : String)->
                 time=data.matching_datetime
                 guestLayout.visibility= View.GONE
                 btOpen.setOnClickListener {
-                    if(guestLayout.visibility==View.GONE) guestLayout.visibility=View.VISIBLE
-                    else guestLayout.visibility=View.GONE
+                    if(guestLayout.visibility==View.GONE) {
+                        guestLayout.visibility = View.VISIBLE
+                        btTog.visibility = View.VISIBLE
+                    }
+                    else {
+                        guestLayout.visibility = View.GONE
+                        btTog.visibility=View.GONE
+                    }
                 }
                 btClose.setOnClickListener {
-                    delete(data.place_id)
+                    delete(data.id)
                 }
                 data.joinRequests.forEach {
+                    val jid = it.id
                     DataBindingUtil.inflate<ItemMyGuestBinding>(LayoutInflater.from(context),R.layout.item_my_guest,null,true).apply{
                         info= "${it.guest.nickname} ${it.guest.age} (${it.guest.gender})"
                         getProfileImage(profileImage,it.guest.profile_url)
                         btAccept.setOnClickListener {
-
+                            makeUp(data.id,jid)
                         }
                         btClose.setOnClickListener {
-
+                            cancel(jid)
                         }
 
                         binding.guestLayout.addView(this.root)
