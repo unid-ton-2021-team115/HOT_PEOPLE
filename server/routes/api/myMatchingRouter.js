@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const dbConn= require(`${process.cwd()}/dbConnection`);
+const dbConn = require(`${process.cwd()}/dbConnection`);
+const passport = require('passport');
 const kakaoAuth = require(`${process.cwd()}/controllers/kakaoAuth`);
 
 router.get('/:status', passport.authenticate('kakao-token'), async (req, res) => {

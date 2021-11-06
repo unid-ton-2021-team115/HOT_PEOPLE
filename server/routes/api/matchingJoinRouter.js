@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const dbConn= require(`${process.cwd()}/dbConnection`);
-const kakaoAuth = require(`${process.cwd()}/controllers/kakaoAuth`);
+const passport = require('passport');
 const moment = require('moment');
 
-router.post('/', kakaoAuth.checkLogin, async (req, res) => {
+router.post('/', passport.authenticate('kakao-token'), async (req, res) => {
     try {
         let sql = 'insert into matching_join value (null, ?, ?, ?)'; 
         let [result] = await dbConn.query(sql, [req.body.matching_id, req.user.id, 'waiting']);
@@ -60,7 +60,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', kakaoAuth.checkLogin, async (req, res) => {
+router.delete('/:id', passport.authenticate('kakao-token'), async (req, res) => {
     try {
         let sql = 'select * from matching_join where id = ?'; 
         let [matching_join] = await dbConn.query(sql, [req.params.id]);
