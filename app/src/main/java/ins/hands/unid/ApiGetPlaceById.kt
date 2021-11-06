@@ -20,6 +20,8 @@ interface RemoteDateSourcePlace{
     suspend fun getMatchingById(id : Int) : GetMatchingResponse
     suspend fun getMatchingSearch(status : String) : GetMatchingListResponse
     suspend fun cancelMatching(id : Int) : StatusResponse
+    suspend fun getMatchingSearchId(id:String) : GetMatchingListResponse
+    suspend fun createMatching(body : CreateMatchBody) : CreateMatchResponse
 
 }
 class RemoteDataSourcePlaceImpl(private val service : GetPlaceService) : RemoteDateSourcePlace{
@@ -45,11 +47,12 @@ class RemoteDataSourcePlaceImpl(private val service : GetPlaceService) : RemoteD
     override suspend fun getMyMatching(): MatchingListResponse =service.getMyMatching(TOKEN)
     override suspend fun getMySuccessMatching(): MatchingListResponse =service.getMySuccessMatching()
     override suspend fun getMyCancelMatching(): MatchingListResponse =service.getMyCancelMatching()
-    override suspend fun joinMatching(body: MatchingIdClass): JoinResponse = service.joinMatcing(body)
+    override suspend fun joinMatching(body: MatchingIdClass): JoinResponse = service.joinMatcing(TOKEN,body)
     override suspend fun cancelMatching(id: Int): StatusResponse =service.cancelMatching(id)
     override suspend fun getMatchingById(id: Int): GetMatchingResponse =service.getMatchingById(id)
     override suspend fun getMatchingSearch(status: String): GetMatchingListResponse =service.getMatchingSearch(status)
-
+    override suspend fun getMatchingSearchId(id: String): GetMatchingListResponse =service.getMatchingSearchId(id)
+    override suspend fun createMatching(body : CreateMatchBody) : CreateMatchResponse = service.createMatching(TOKEN,body)
 
 }
 
@@ -68,17 +71,23 @@ interface GetPlaceService {
     suspend fun getMySuccessMatching() : MatchingListResponse
     @GET("/api/my_matching/cancel")
     suspend fun getMyCancelMatching() : MatchingListResponse
-    @POST("/api/matching_join/")
-    suspend fun joinMatcing(@Body body : MatchingIdClass) : JoinResponse
+    @POST("/api/matching_join")
+    suspend fun joinMatcing(@Query("access_token") token : String, @Body body : MatchingIdClass) : JoinResponse
     @GET("/api/matching_join/{id}")
     suspend fun getMatchingById(@Path("id") id : Int) : GetMatchingResponse
     @GET("/api/matching_join/search")
     suspend fun getMatchingSearch(@Query("status") status : String) : GetMatchingListResponse
     @DELETE("/api/matching_join/{id}")
     suspend fun cancelMatching(@Path("id") id:Int) : StatusResponse
+    @GET("/api/matching_join/search")
+    suspend fun getMatchingSearchId(@Query("place_id") id : String) : GetMatchingListResponse
+    @POST("/api/matching")
+    suspend fun createMatching(@Query("access_token") token :String, @Body body: CreateMatchBody) : CreateMatchResponse
 
 }
 
+data class CreateMatchBody(val place_id : String, val matching_datetime : String, val description : String)
+data class CreateMatchResponse(val status : String, val insertId : Int, val data : CreateMatchBody)
 data class MatchingListResponse(val status : String, val data : MutableList<MatchingData>)
 data class UserResponse(val status : String, val data : UserData)
 data class PlaceResponse(val status : String, val data : PlaceData)

@@ -34,7 +34,7 @@ class HomeMenuFragment : Fragment() {
             tvAge.setText("${prefs.getInt("user_age",20)}(${prefs.getString("user_gender","무성")})")
         }
         observeProfileImage()
-        //viewModel.getMatchingCnt()
+        viewModel.getMatchingCnt()
         viewModel.myMatchingCnt.observe(viewLifecycleOwner,{
             bind?.matchCreate = it.toString()
         })

@@ -2,6 +2,7 @@ package ins.hands.unid
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.location.Location
@@ -70,7 +71,12 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
         findViewById<View>(R.id.menu_fragment).visibility=View.GONE
         observePlaceData()
         observeMapTheme()
-
+        findViewById<View>(R.id.bt_gotoList).setOnClickListener {
+            if(currentMarker!=null)
+            startActivity(Intent(this,MatchWaitActivity::class.java).apply{
+                putExtra("placeId",viewModel.placeList.value!!.find{it.name==currentMarker!!.title}.toString())
+            })
+        }
         bindNavigationBar()
         bitmapMarker()
         menuFragment = HomeMenuFragment()
