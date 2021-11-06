@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 # instagram-scraping.py
 
 # get_ipython().system('pip uninstall selenium -y')
@@ -6,8 +7,20 @@
 
 import time
 from bs4 import BeautifulSoup
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
+
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+driver = webdriver.Chrome(chrome_options=chrome_options)
 
 import re, unicodedata
 
@@ -56,13 +69,7 @@ def web_scraping(email, password):
     district_list = ['마포', '종로', '용산', '강남', '송파', '영등포', '한남', '신촌', '홍대', '을지로', '여의도', '성수', '연남', '북촌', '압구정', '판교', '분당', '대학로', '건대', '잠실', '이태원']
     
     # 크롬 원격 접속 (인스타그램)
-    options = webdriver.ChromeOptions()
-    options.add_argument('headless')
-    # options.add_argument("disable-gpu")
-    # options.add_argument("--disable-gpu")
-    
     url = 'https://www.instagram.com'
-    driver = webdriver.Chrome(executable_path='./chromedriver', options=options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(5)
@@ -124,7 +131,4 @@ def web_scraping(email, password):
         obj['imgsrc']=results_df.iloc[i][3]
         data.append(obj)
 
-    # 데이터프레임 CSV 파일로 변환
-    results_csv = results_df.to_csv('./instagram_web_scraping.csv',index=False)
-    
     return data;
