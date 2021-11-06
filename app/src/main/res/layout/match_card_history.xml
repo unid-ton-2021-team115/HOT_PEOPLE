@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="260dp"
+    android:layout_height="140dp"
     android:background="#FFFFFF"
     android:elevation="5dp"
     tools:ignore="ExtraText">
@@ -40,7 +40,7 @@
         android:id="@+id/match_card_apply_time"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="8dp"
         android:text="매칭 날짜 / 시간"
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:textSize="18dp"
@@ -48,49 +48,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/match_card_apply_location"
         tools:ignore="MissingConstraints" />
-
-    <Button
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="18dp"
-        android:text="수락한 사람 ▼▲"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/match_card_apply_time"></Button>
-
-    <Button
-        android:id="@+id/matchCancelButton"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:text="취소"
-        android:fontFamily="@font/spoqa_han_sans_regular"
-        android:textSize="16dp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></Button>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        tools:ignore="MissingConstraints" />
-
-    <include
-        layout="@layout/profile_card_for_comfirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
