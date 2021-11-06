@@ -63,16 +63,11 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
             setMapLocation(googlemap!!)
             Log.d("HomeActivity","RequestCentor")
         }
-
-        /*
-        findViewById<RecyclerView>(R.id.image_recylcer).adapter = imageAdapter*/
-        infoFragment= PlaceInfoFragment(
-
-        ).apply{
-            bindMainImage={
-
-            }
+        imageAdapter = ImageRecyclerAdapter(findViewById(R.id.big_image),findViewById(R.id.big_image_layout)){image, url ->
+            //viewModel.bindImage(url,image)
         }
+
+        findViewById<RecyclerView>(R.id.image_recylcer).adapter = imageAdapter
         findViewById<View>(R.id.drawer_bt).setOnClickListener { openFrag() }
         fusedLocationClient = FusedLocationProviderClient(this)
         fusedLocationClient.requestLocationUpdates(LocationRequest(), object : LocationCallback(){
@@ -95,10 +90,7 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
         }
 
 
-        imageAdapter = ImageRecyclerAdapter(bind.bigImage,bind.bigImageLayout){image, url ->
-            //viewModel.bindImage(url,image)
-        }
-        */
+
 
         viewModel.getHotPlace(-1)
     }
