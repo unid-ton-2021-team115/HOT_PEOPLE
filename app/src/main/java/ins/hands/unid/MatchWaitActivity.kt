@@ -14,9 +14,11 @@ import android.widget.EditText
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import ins.hands.unid.MyApplication.Companion.prefs
 import ins.hands.unid.databinding.ActivityMatchWaitBinding
 import okhttp3.internal.notify
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.lang.NullPointerException
 import java.text.DateFormat
 import java.util.*
 
@@ -29,10 +31,12 @@ class MatchWaitActivity : BaseActivity() {
     val bind by binding<ActivityMatchWaitBinding>(R.layout.activity_match_wait)
     var message = ""
     var placeId = ""
+    var adapterMode=0
     lateinit var adapter: MatchFindAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_wait)
+        adapterMode = intent.getIntExtra("adapterMode",0)
 
         adapter = MatchFindAdapter(
             {image, url ->
@@ -44,13 +48,30 @@ class MatchWaitActivity : BaseActivity() {
                 id ->
                 viewModel.joinMatch(id)
             }
-        )
-        placeId=intent.getStringExtra("placeId")!!
-        viewModel.getPlaceDataById(bind,placeId)
+        ).apply{
+            cancelMatch={
+                viewModel.cancelMatch(it)
+            }
+            if(adapterMode>0) titleShow=true
+        }
+        try{placeId= intent.getStringExtra("placeId")!!
+            viewModel.getPlaceDataById(bind,placeId)
 
-        viewModel.getMatchByPlace(placeId)
+            viewModel.getMatchByPlace(placeId)
+        }
+        catch(e:NullPointerException){}
+
         bind.apply{
             adapter=this@MatchWaitActivity.adapter
+            if(adapterMode==1) {
+                place = "대기중인 매칭"
+
+                viewModel.getMyMatchingWait(prefs.getInt("user_id",0))
+            }
+            if(adapterMode==2) {
+                place = "참여한 매칭"
+                viewModel.getMyMatchingMakeup(prefs.getInt("user_id",0))
+            }
         }
         viewModel.matchingList.observe(this,{
             adapter.dataList = it

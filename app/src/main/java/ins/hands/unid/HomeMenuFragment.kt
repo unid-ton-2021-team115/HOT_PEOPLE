@@ -37,6 +37,16 @@ class HomeMenuFragment : Fragment() {
             btMyMatching.setOnClickListener {
                 startActivity(Intent(context,MyMatchingActivity::class.java))
             }
+            btMatchWait.setOnClickListener {
+                startActivity(Intent(context,MatchWaitActivity::class.java).apply{
+                    putExtra("adapterMode",1)
+                })
+            }
+            btMatchMakeup.setOnClickListener {
+                startActivity(Intent(context,MatchWaitActivity::class.java).apply{
+                    putExtra("adapterMode",2)
+                })
+            }
         }
         observeProfileImage()
         viewModel.getMatchingCnt()

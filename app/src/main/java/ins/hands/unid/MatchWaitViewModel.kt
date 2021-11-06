@@ -23,6 +23,7 @@ class MatchWaitViewModel : ViewModel(), KoinComponent {
     val dataSource : RemoteDateSourcePlace by inject()
     var matchingList = MutableLiveData(mutableListOf<MatchingStatusData>())
     fun getMatchByPlace(placeid : String){
+        placeId = placeid
         viewModelScope.launch {
             dataSource.getMatchingSearchId(placeid).apply{
                 Log.d("Recieved","${data.size} matches")
@@ -32,7 +33,7 @@ class MatchWaitViewModel : ViewModel(), KoinComponent {
         }
 
     }
-
+    var placeId : String = ""
     fun getProfileImage(image: ImageView, url: String) {
         viewModelScope. launch{
 
@@ -107,6 +108,42 @@ class MatchWaitViewModel : ViewModel(), KoinComponent {
     fun deleteMyMatching(id : String){
         viewModelScope.launch{
             //dataSource
+        }
+    }
+    fun cancelMatch(id : Int){
+        viewModelScope.launch {
+            dataSource.cancelMatching(id).apply{
+                getMatchByPlace(placeId)
+            }
+        }
+    }
+
+    fun getMyMatchingWait(id : Int) {
+        viewModelScope.launch{
+            dataSource.getMatchingByGuestId(id,"waiting").apply{
+                var matchings = mutableListOf<MatchingStatusData>()
+                data.forEach {
+                    dataSource.getMatchingById(it.matching_id).apply{
+                       matchings.add(data)
+                    }
+
+                }
+                matchingList.value = matchings
+            }
+        }
+    }
+    fun getMyMatchingMakeup(id : Int) {
+        viewModelScope.launch{
+            dataSource.getMatchingByGuestId(id,"makeup").apply{
+                var matchings = mutableListOf<MatchingStatusData>()
+                data.forEach {
+                    dataSource.getMatchingById(it.matching_id).apply{
+                        matchings.add(data)
+                    }
+
+                }
+                matchingList.value = matchings
+            }
         }
     }
 }

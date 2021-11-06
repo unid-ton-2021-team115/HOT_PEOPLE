@@ -23,7 +23,7 @@ interface RemoteDateSourcePlace{
     suspend fun cancelMatching(id : Int) : StatusResponse
     suspend fun getMatchingSearchId(id:String) : GetMatchingListResponse
     suspend fun createMatching(body : CreateMatchBody) : CreateMatchResponse
-
+    suspend fun getMatchingByGuestId(id : Int, status : String) : MatchingListResponse
 }
 class RemoteDataSourcePlaceImpl(private val service : GetPlaceService) : RemoteDateSourcePlace{
     override suspend fun getPlace(id : String) : PlaceResponse = service.getPlace(id)
@@ -54,7 +54,7 @@ class RemoteDataSourcePlaceImpl(private val service : GetPlaceService) : RemoteD
     override suspend fun getMatchingSearch(status: String): GetMatchingListResponse =service.getMatchingSearch(status)
     override suspend fun getMatchingSearchId(id: String): GetMatchingListResponse =service.getMatchingSearchId(id)
     override suspend fun createMatching(body : CreateMatchBody) : CreateMatchResponse = service.createMatching(TOKEN,body)
-
+    override suspend fun getMatchingByGuestId(id : Int, status : String) : MatchingListResponse = service.getMatchingByGuestId(id,status)
 }
 
 interface GetPlaceService {
@@ -74,7 +74,7 @@ interface GetPlaceService {
     suspend fun getMyCancelMatching() : MatchingListResponse
     @POST("/api/matching_join")
     suspend fun joinMatcing(@Query("access_token") token : String, @Body body : MatchingIdClass) : JoinResponse
-    @GET("/api/matching_join/{id}")
+    @GET("/api/matching/{id}")
     suspend fun getMatchingById(@Path("id") id : Int) : GetMatchingResponse
     @GET("/api/matching/search")
     suspend fun getMatchingSearch(@Query("status") status : String) : GetMatchingListResponse
@@ -84,6 +84,8 @@ interface GetPlaceService {
     suspend fun getMatchingSearchId(@Query("place_id") id : String) : GetMatchingListResponse
     @POST("/api/matching")
     suspend fun createMatching(@Query("access_token") token :String, @Body body: CreateMatchBody) : CreateMatchResponse
+    @GET("/api/matching_join/search")
+    suspend fun getMatchingByGuestId(@Query("guest_id") id : Int, @Query("status") status : String) : MatchingListResponse
 
 }
 
