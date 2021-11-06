@@ -59,7 +59,7 @@ router.get('/search', async (req, res) => {
     }
 });
 
-router.post('/:id/:status', passport.authenticate('kakao-token'), async (req, res) => {
+router.get('/:id/:status', passport.authenticate('kakao-token'), async (req, res) => {
     try {
         let sql = 'select * from matching where id = ?'; 
         let [matching] = await dbConn.query(sql, [req.params.id]);
@@ -75,7 +75,7 @@ router.post('/:id/:status', passport.authenticate('kakao-token'), async (req, re
     
         for(let joinRequest of joinRequests) {
             sql = 'update matching_join set status = ? where id = ?'; 
-            let [joinRequests] = await dbConn.query(sql, [req.body.matching_join_id === joinRequest.id ? 'makeup' : 'cancel', joinRequest.id]);
+            let [joinRequests] = await dbConn.query(sql, [req.params.matching_join_id === joinRequest.id ? 'makeup' : 'cancel', joinRequest.id]);
         }
 
         sql = 'update matching set status = ? where id = ?'; 
@@ -83,8 +83,6 @@ router.post('/:id/:status', passport.authenticate('kakao-token'), async (req, re
 
         return res.status(201).json({
             status: "OK",
-            insertId: result.insertId,
-            data: req.body,
         });
 
     } catch(err) {
@@ -107,7 +105,7 @@ router.get('/:id', async (req, res) => {
             sql = 'select * from user_kakao where id = ?'; 
             let [hostInfo] = await dbConn.query(sql, [result.host_id]);
             result.host = hostInfo[0];
-            
+
             for(let joinRequest of joinRequests) {
                 sql = 'select * from user_kakao where id = ?'; 
                 let [userInfo] = await dbConn.query(sql, [joinRequest.guest_id]);
