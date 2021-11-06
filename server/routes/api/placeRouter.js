@@ -8,6 +8,15 @@ router.get('/search', async (req, res) => {
         sql = sql.substr(0, sql.length - 3);
         let [results] = await dbConn.query(sql, Object.values(req.query));
 
+        for(let result of results) {
+            sql = 'select * from place_types where place_id = ?'; 
+            let [place_types] = await dbConn.query(sql, [result.id]);
+            let types = [];
+            for(let place_type of place_types)
+                types.push(place_type.type)
+            result.types = types;
+        } 
+
         return res.status(200).json({
             status: "OK",
             data: results
@@ -25,6 +34,15 @@ router.get('/:id', async (req, res) => {
         let sql = 'select * from place where id = ?'; 
         let [results] = await dbConn.query(sql, [req.params.id]);
 
+        for(let result of results) {
+            sql = 'select * from place_types where place_id = ?'; 
+            let [place_types] = await dbConn.query(sql, [result.id]);
+            let types = [];
+            for(let place_type of place_types)
+                types.push(place_type.type)
+            result.types = types;
+        } 
+        
         return res.status(200).json({
             status: "OK",
             data: results[0]
