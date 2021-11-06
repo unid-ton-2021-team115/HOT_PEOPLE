@@ -34,10 +34,12 @@ import android.graphics.drawable.Drawable
 
 import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainer
+import androidx.fragment.app.FragmentContainerView
+import androidx.recyclerview.widget.RecyclerView
 
 import com.google.android.gms.maps.model.BitmapDescriptor
-
-
+import java.lang.IllegalArgumentException
 
 
 class HomeActivity : BaseActivity(), OnMapReadyCallback {
@@ -45,6 +47,8 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
     val viewModel : HomeViewModel by viewModel()
     lateinit var mapFragment: SupportMapFragment
     lateinit var menuFragment : HomeMenuFragment
+    lateinit var imageAdapter : ImageRecyclerAdapter
+
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +63,11 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
             setMapLocation(googlemap!!)
             Log.d("HomeActivity","RequestCentor")
         }
+        imageAdapter = ImageRecyclerAdapter(findViewById(R.id.big_image),findViewById(R.id.big_image_layout)){image, url ->
+            //viewModel.bindImage(url,image)
+        }
 
+        findViewById<RecyclerView>(R.id.image_recylcer).adapter = imageAdapter
         findViewById<View>(R.id.drawer_bt).setOnClickListener { openFrag() }
         fusedLocationClient = FusedLocationProviderClient(this)
         fusedLocationClient.requestLocationUpdates(LocationRequest(), object : LocationCallback(){
@@ -80,6 +88,8 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
         bindNavigationBar()
         bitmapMarker()
         menuFragment = HomeMenuFragment()
+
+
 
         viewModel.getHotPlace(-1)
     }
@@ -105,7 +115,12 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
         setMapLocation(map!!)
         map.setOnMapClickListener { closeInfo() }
         map.setOnMarkerClickListener {
-            if(currentMarker!=null) currentMarker?.setIcon(markerSmall)
+            try {
+                if (currentMarker != null) currentMarker?.setIcon(markerSmall)
+            }
+            catch(e:IllegalArgumentException){
+                e.printStackTrace()
+            }
 
             currentMarker = it
             it.setIcon(markerBig)

@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import ins.hands.unid.MyApplication.Companion.prefs
 import ins.hands.unid.data.MatchingData
 import ins.hands.unid.data.MatchingStatusData
 import ins.hands.unid.databinding.ActivityMatchWaitBinding
@@ -105,14 +106,34 @@ class MatchWaitViewModel : ViewModel(), KoinComponent {
             }
         }
     }
-    fun deleteMyMatching(id : String){
+    fun deleteMyMatching(id : Int){
         viewModelScope.launch{
-            //dataSource
+            dataSource.closeMatching(id)
+            dataSource.getMyMatching().apply{
+                matchingList.value = data
+            }
         }
     }
+    fun makeupMatching(id : Int, joinId : Int)
+    {
+        viewModelScope.launch{
+            dataSource.makeupMatching(id,joinId)
+            dataSource.getMyMatching().apply{
+                matchingList.value = data
+            }
+        }
+    }
+
     fun cancelMatch(id : Int){
         viewModelScope.launch {
             dataSource.cancelMatching(id).apply{
+            if(placeId =="")
+            {
+
+                getMyMatchingWait(prefs.getInt("user_id",0))
+            }
+            else
+
                 getMatchByPlace(placeId)
             }
         }
