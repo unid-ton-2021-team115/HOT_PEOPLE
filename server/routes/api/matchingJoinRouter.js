@@ -12,7 +12,7 @@ router.post('/', passport.authenticate('kakao-token'), async (req, res) => {
             status: "OK",
             insertId: result.insertId,
             data: req.body,
-        });
+        }); 
 
     } catch(err) {
         console.error(err);
