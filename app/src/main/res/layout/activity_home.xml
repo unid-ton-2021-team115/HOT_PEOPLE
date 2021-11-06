@@ -50,20 +50,67 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.fragment.app.FragmentContainerView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/info_layout"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:name="ins.hands.unid.PlaceInfoFragment"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
             android:translationZ="20dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="장소 이름" />
 
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                tools:text="주소" />
 
-        </androidx.fragment.app.FragmentContainerView>
+            <TextView
+                android:id="@+id/bt_gotoList"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/round_rect"
+                android:backgroundTint="#e2eeff"
+                android:gravity="center"
+                android:text="매치\n목록"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/image_recylcer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bt_gotoList" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"

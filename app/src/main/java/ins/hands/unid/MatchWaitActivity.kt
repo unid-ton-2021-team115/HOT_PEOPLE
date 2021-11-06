@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.text.format.DateFormat.is24HourFormat
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
@@ -57,7 +56,6 @@ class MatchWaitActivity : BaseActivity() {
             if(adapterMode>0) titleShow=true
         }
         try{placeId= intent.getStringExtra("placeId")!!
-            Log.d("MatchWait","placeid ${placeId}")
             viewModel.getPlaceDataById(bind,placeId)
 
             viewModel.getMatchByPlace(placeId)
