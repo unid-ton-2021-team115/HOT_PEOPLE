@@ -35,7 +35,7 @@
         <include
             layout="@layout/match_card_wait_apply"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="20dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
