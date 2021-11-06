@@ -45,19 +45,20 @@
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintTop_toTopOf="parent"
            tools:text="우리집 어딘가" />
+
         <TextView
             android:id="@+id/match_card_apply_location"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_width="295dp"
+            android:layout_height="54dp"
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/spoqa_han_sans_regular"
-            android:textColor="@color/black"
             android:text="@{address}"
-            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/match_card_apply_name"
-            tools:text="미국 뉴욕주 뉴욕시 셰이 스타디움"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:text="미국 뉴욕주 뉴욕시 셰이 스타디움" />
         <TextView
             android:id="@+id/match_card_apply_time"
             android:layout_width="wrap_content"
