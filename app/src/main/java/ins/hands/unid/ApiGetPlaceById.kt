@@ -42,7 +42,7 @@ class RemoteDataSourcePlaceImpl(private val service : GetPlaceService) : RemoteD
         return service.getUserData(token)
     }
 
-    override suspend fun getMyMatching(): MatchingListResponse =service.getMyMatching()
+    override suspend fun getMyMatching(): MatchingListResponse =service.getMyMatching(TOKEN)
     override suspend fun getMySuccessMatching(): MatchingListResponse =service.getMySuccessMatching()
     override suspend fun getMyCancelMatching(): MatchingListResponse =service.getMyCancelMatching()
     override suspend fun joinMatching(body: MatchingIdClass): JoinResponse = service.joinMatcing(body)
@@ -63,7 +63,7 @@ interface GetPlaceService {
     @GET("/auth/kakao/token")
     suspend fun getUserData(@Query("access_token") access_token : String) : UserResponse
     @GET("/api/my_matching/wait")
-    suspend fun getMyMatching() : MatchingListResponse
+    suspend fun getMyMatching(@Query("access_token") token : String) : MatchingListResponse
     @GET("/api/my_matching/success")
     suspend fun getMySuccessMatching() : MatchingListResponse
     @GET("/api/my_matching/cancel")
@@ -74,7 +74,7 @@ interface GetPlaceService {
     suspend fun getMatchingById(@Path("id") id : Int) : GetMatchingResponse
     @GET("/api/matching_join/search")
     suspend fun getMatchingSearch(@Query("status") status : String) : GetMatchingListResponse
-    @DELETE("/api:matching_join/{id}")
+    @DELETE("/api/matching_join/{id}")
     suspend fun cancelMatching(@Path("id") id:Int) : StatusResponse
 
 }

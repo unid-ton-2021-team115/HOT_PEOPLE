@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat
 import android.graphics.drawable.Drawable
 
 import androidx.annotation.DrawableRes
+import androidx.fragment.app.Fragment
 
 import com.google.android.gms.maps.model.BitmapDescriptor
 
@@ -42,6 +43,7 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
     val bind by binding<ActivityHomeBinding>(R.layout.activity_home)
     val viewModel : HomeViewModel by viewModel()
     lateinit var mapFragment: SupportMapFragment
+    lateinit var menuFragment : HomeMenuFragment
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +58,8 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
             setMapLocation(googlemap!!)
             Log.d("HomeActivity","RequestCentor")
         }
+
+        findViewById<View>(R.id.drawer_bt).setOnClickListener { openFrag() }
         fusedLocationClient = FusedLocationProviderClient(this)
         fusedLocationClient.requestLocationUpdates(LocationRequest(), object : LocationCallback(){
             override fun onLocationResult(p0: LocationResult?) {
@@ -63,12 +67,13 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
                 super.onLocationResult(p0)
             }
             }, Looper.getMainLooper())
-
+        findViewById<View>(R.id.menu_fragment).visibility=View.GONE
         observePlaceData()
         observeMapTheme()
 
         bindNavigationBar()
         bitmapMarker()
+        menuFragment = HomeMenuFragment()
 
         viewModel.getHotPlace(-1)
     }
@@ -108,6 +113,19 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
             true
 
         }
+    }
+    fun openFrag(){
+        findViewById<View>(R.id.menu_fragment).visibility=View.VISIBLE
+        findViewById<View>(R.id.frag_shade).apply{
+            visibility=View.VISIBLE
+            setOnClickListener {
+                closeFrag()
+            }
+        }
+    }
+    fun closeFrag(){
+        findViewById<View>(R.id.menu_fragment).visibility=View.GONE
+        findViewById<View>(R.id.frag_shade).visibility=View.GONE
     }
     @SuppressLint("MissingPermission")
     fun setMapLocation(map : GoogleMap)
@@ -154,8 +172,8 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
     }
 
     override fun onBackPressed() {
-
-        if(findViewById<View>(R.id.info_layout).visibility == View.VISIBLE)
+        if(findViewById<View>(R.id.frag_shade).visibility==View.VISIBLE) closeFrag()
+        else if(findViewById<View>(R.id.info_layout).visibility == View.VISIBLE)
             closeInfo()
         else finishAffinity()
     }

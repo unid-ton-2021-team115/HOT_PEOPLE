@@ -20,6 +20,7 @@ class HomeMenuFragment : Fragment() {
 
     }
     var bind : FragmentHomeMenuBinding? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,12 +28,13 @@ class HomeMenuFragment : Fragment() {
         // Inflate the layout for this fragment
         bind = FragmentHomeMenuBinding.inflate(inflater,container,false)
 
-
+        viewModel.getProfileImage(prefs.getString("user_profile_url","")!!)
         bind?.apply{
 
             tvAge.setText("${prefs.getInt("user_age",20)}(${prefs.getString("user_gender","무성")})")
         }
-
+        observeProfileImage()
+        //viewModel.getMatchingCnt()
         viewModel.myMatchingCnt.observe(viewLifecycleOwner,{
             bind?.matchCreate = it.toString()
         })
@@ -41,5 +43,10 @@ class HomeMenuFragment : Fragment() {
         return bind?.root
     }
 
-
+    fun observeProfileImage()
+    {
+        viewModel.profileImage.observe(viewLifecycleOwner,{
+            bind?.profileImage?.setImageBitmap(it)
+        })
+    }
 }
