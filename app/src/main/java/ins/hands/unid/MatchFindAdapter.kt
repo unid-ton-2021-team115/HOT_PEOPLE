@@ -34,7 +34,16 @@ val joinMatch:(id:Int)->Unit) : RecyclerView.Adapter<MatchFindAdapter.ViewHolder
                     getPlaceInfo(binding, data.place_id)
                 }
                 else placeAddress = data.description
-                if(data.joinRequests.filter { it.guest.id ==prefs.getInt("user_id",0)  }.size>0) {
+                if(data.status!="wait") {
+                    matchCancelBt.visibility = View.VISIBLE
+                    matchApplyButton.visibility = View.GONE
+                    matchCancelBt.setOnClickListener {
+
+                    }
+                    matchCancelBt.setText("완료됨")
+
+                }
+                else if(data.joinRequests.filter { it.guest.id ==prefs.getInt("user_id",0)  }.size>0) {
                     matchCancelBt.visibility = View.VISIBLE
                     matchApplyButton.visibility=View.GONE
                     matchCancelBt.setOnClickListener {
