@@ -29,6 +29,7 @@ data class MatchingStatusData(
     val matchiing_datetime : String,
     val description: String,
     val status: String,
+    val host : UserData,
     val joinRequests : MutableList<JoinRequest>
 )
 data class JoinRequest(

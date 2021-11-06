@@ -20,7 +20,10 @@ val joinMatch:(id:Int)->Unit) : RecyclerView.Adapter<MatchFindAdapter.ViewHolder
                 binding.matchApplyButton.setOnClickListener {
                     joinMatch(data.id)
                 }
-                //getImageInfo(binding.profileCardPhoto,data.joinRequests[0].guest.profile_url)
+                getImageInfo(profileCardPhoto,data.host.profile_url)
+                profileCardName.setText(data.host.nickname)
+                profileCardAge.setText(data.host.age.toString())
+                profileCardGender.setText(data.host.gender)
                 getPlaceInfo(binding,data.place_id)
             }
 

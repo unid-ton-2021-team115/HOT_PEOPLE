@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="60dp"
     android:background="#dde6aa"
     android:elevation="5dp">
 
@@ -46,14 +45,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="나이"
-        android:textSize="20dp"
-        android:textColor="@color/black"
+        android:layout_marginRight="10dp"
         android:fontFamily="@font/spoqa_han_sans_regular"
+        android:text="나이"
+        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/profileCardGender"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="10dp"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -61,12 +60,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="(성별)"
-
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/spoqa_han_sans_regular"
         android:layout_marginRight="20dp"
+
+        android:fontFamily="@font/spoqa_han_sans_regular"
+        android:text="(성별)"
+        android:textColor="@color/black"
+        android:textSize="20dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
