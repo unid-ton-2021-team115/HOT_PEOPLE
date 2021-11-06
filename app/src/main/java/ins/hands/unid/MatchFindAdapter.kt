@@ -27,7 +27,7 @@ val joinMatch:(id:Int)->Unit) : RecyclerView.Adapter<MatchFindAdapter.ViewHolder
                 if(type==2) hostView.visibility=View.GONE
                 getImageInfo(profileCardPhoto,data.host.profile_url)
                 profileCardName.setText(data.host.nickname)
-                profileCardAge.setText(data.host.ageRange)
+                profileCardAge.setText(data.host.age_range)
                 profileCardGender.setText(data.host.gender)
                 time=data.matching_datetime
                 if(titleShow) {

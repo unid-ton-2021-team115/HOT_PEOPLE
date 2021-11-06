@@ -21,7 +21,7 @@ class MainViewModel : ViewModel(), KoinComponent {
                         setInt("user_id", id)
                         setInt("user_likes", likes)
                         setString("user_accessToken", accessToken)
-                        setString("user_age_range",ageRange)
+                        setString("user_age_range",age_range)
                         setString("user_gender",gender)
                         setString("user_profile_url",data.profile_url)
                         setInt("user_age",when(age){null -> 20 else-> age})
