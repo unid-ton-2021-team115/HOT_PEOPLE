@@ -6,7 +6,10 @@ import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import ins.hands.unid.data.MatchingData
 import ins.hands.unid.data.MatchingStatusData
+import ins.hands.unid.databinding.ActivityMatchWaitBinding
+import ins.hands.unid.databinding.ItemMyMatchingBinding
 import ins.hands.unid.databinding.MatchCardWaitApplyBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -57,7 +60,22 @@ class MatchWaitViewModel : ViewModel(), KoinComponent {
             }
         }
     }
-
+    fun getPlaceDataById(bind: ActivityMatchWaitBinding, id: String) {
+        viewModelScope.launch {
+            dataSource.getPlace(id).apply{
+                bind.place = data.name
+                bind.address = data.address
+            }
+        }
+    }
+    fun getPlaceDataById(bind: ItemMyMatchingBinding, id: String) {
+        viewModelScope.launch {
+            dataSource.getPlace(id).apply{
+                bind.placeName = data.name
+                bind.address = data.address
+            }
+        }
+    }
     fun joinMatch(id: Int) {
         viewModelScope.launch{
             dataSource.joinMatching(MatchingIdClass(id)).apply{
@@ -70,11 +88,25 @@ class MatchWaitViewModel : ViewModel(), KoinComponent {
         viewModelScope.launch{
             Log.d("DateFormat","${it.year.t()}-${it.month.t()}-${it.day.t()}T${it.hour.t()}:${it.minute.t()}:00")
             dataSource.createMatching(CreateMatchBody(placeId,"${it.year.t()}-${it.month.t()}-${it.day.t()}T${it.hour.t()}:${it.minute.t()}:00",message)).apply{
-
+            getMatchByPlace(placeId)
             }
         }
     }
     fun Int.t():String{
         return "%02d".format(this)
+    }
+    val myMatchingList = MutableLiveData(mutableListOf<MatchingData>())
+    fun getMyMatching(){
+        viewModelScope.launch {
+            dataSource.getMyMatching().apply{
+                matchingList.value = data
+                //Log.d("MyMatching","${data[0].matchiing_datetime}")
+            }
+        }
+    }
+    fun deleteMyMatching(id : String){
+        viewModelScope.launch{
+            //dataSource
+        }
     }
 }

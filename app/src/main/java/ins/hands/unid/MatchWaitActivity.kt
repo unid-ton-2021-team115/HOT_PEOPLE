@@ -34,7 +34,6 @@ class MatchWaitActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_wait)
 
-
         adapter = MatchFindAdapter(
             {image, url ->
                 viewModel.getProfileImage(image,url)
@@ -47,6 +46,8 @@ class MatchWaitActivity : BaseActivity() {
             }
         )
         placeId=intent.getStringExtra("placeId")!!
+        viewModel.getPlaceDataById(bind,placeId)
+
         viewModel.getMatchByPlace(placeId)
         bind.apply{
             adapter=this@MatchWaitActivity.adapter

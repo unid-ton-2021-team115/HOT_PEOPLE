@@ -69,9 +69,10 @@
            app:tint="@color/black" />
 
        <TextView
-           android:id="@+id/textView2"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           android:id="@+id/bt_my_matching"
+           android:layout_width="200dp"
+           android:layout_height="40dp"
+           android:gravity="center_vertical"
            android:layout_marginStart="32dp"
            android:text="내 매칭"
            android:textColor="@color/black"

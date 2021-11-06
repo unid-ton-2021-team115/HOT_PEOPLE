@@ -10,6 +10,9 @@
         <variable
             name="placeAddress"
             type="String" />
+        <variable
+            name="time"
+            type="String" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -50,7 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:text="매칭 날짜 / 시간"
+        android:text="@{time}"
+        tools:text="매칭 날짜 / 시간"
         android:fontFamily="@font/spoqa_han_sans_regular"
         android:textSize="18dp"
         android:textColor="@color/black"
@@ -64,6 +68,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
+        android:src="@drawable/send"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UNID">
         <activity
+            android:name=".MyMatchingActivity"
+            android:exported="true" />
+        <activity
             android:name=".MatchWaitActivity"
             android:exported="true" />
 
@@ -45,7 +48,7 @@
         </activity>
         <activity
             android:name=".ApiTestActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

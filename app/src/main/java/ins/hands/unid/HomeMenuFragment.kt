@@ -1,5 +1,6 @@
 package ins.hands.unid
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -32,6 +33,10 @@ class HomeMenuFragment : Fragment() {
         bind?.apply{
 
             tvAge.setText("${prefs.getInt("user_age",20)}(${prefs.getString("user_gender","무성")})")
+
+            btMyMatching.setOnClickListener {
+                startActivity(Intent(context,MyMatchingActivity::class.java))
+            }
         }
         observeProfileImage()
         viewModel.getMatchingCnt()

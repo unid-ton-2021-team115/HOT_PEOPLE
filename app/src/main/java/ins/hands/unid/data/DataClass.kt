@@ -13,8 +13,8 @@ data class PlaceData(
 
 data  class MatchingData(
     val id: Int,
-    val host_id : Int,
-    val place_id : String,
+    val matching_id:Int,
+    val guestId : Int,
     val create_date_time : String,
     val matching_date_time : String,
     val description : String,
@@ -26,7 +26,7 @@ data class MatchingStatusData(
     val host_id : Int,
     val place_id : String,
     val create_datetime : String,
-    val matchiing_datetime : String,
+    val matching_datetime : String,
     val description: String,
     val status: String,
     val host : UserData,

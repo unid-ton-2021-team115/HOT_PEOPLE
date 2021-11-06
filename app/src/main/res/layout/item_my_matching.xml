@@ -18,6 +18,15 @@
         android:layout_height="wrap_content"
         >
 
+        <ImageView
+            android:id="@+id/bt_close"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_baseline_cancel_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
@@ -57,7 +66,7 @@
             tools:text="20년 11월 21일" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/bt_open"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -76,7 +85,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/bt_open">
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
