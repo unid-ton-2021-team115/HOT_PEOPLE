@@ -29,7 +29,7 @@ data class MatchingStatusData(
     val matchiing_datetime : String,
     val description: String,
     val status: String,
-    val joinRequests : JoinRequest
+    val joinRequests : MutableList<JoinRequest>
 )
 data class JoinRequest(
     val id : Int,

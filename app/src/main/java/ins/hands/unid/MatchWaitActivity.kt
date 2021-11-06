@@ -4,19 +4,22 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.text.format.DateFormat.is24HourFormat
+import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import ins.hands.unid.databinding.ActivityMatchWaitBinding
 import okhttp3.internal.notify
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DateFormat
 import java.util.*
-import android.R
+
 
 
 
@@ -44,7 +47,7 @@ class MatchWaitActivity : BaseActivity() {
             }
         )
         placeId=intent.getStringExtra("placeId")!!
-        viewModel.getMatchByPlace(intent.getStringExtra("placeId")!!)
+        viewModel.getMatchByPlace(placeId)
         bind.apply{
             adapter=this@MatchWaitActivity.adapter
         }
@@ -58,12 +61,13 @@ class MatchWaitActivity : BaseActivity() {
                 setMessage("하고싶은 메세지를 입력하세요")
                 val input = EditText(this@MatchWaitActivity)
                 setView(input)
-                setPositiveButton("완료",DialogInterface.OnClickListener { dialog, which ->
+                setPositiveButton("완료") { dialog, which ->
                     message = input.text.toString()
-                    DatePickerFragment{
-                        viewModel.createMatch(placeId,message,it)
-                    }
-                })
+
+                    DatePickerFragment ({
+                        viewModel.createMatch(placeId, message, it)
+                    },supportFragmentManager,this@MatchWaitActivity).show(supportFragmentManager,"날짜")
+                }
                 setNegativeButton("취소",DialogInterface.OnClickListener { dialog, which ->  })
                 
                 show()
@@ -94,7 +98,7 @@ class TimePickerFragment(val onEnd:(timeData : MyTimeData)->Unit, val timeData: 
     }
 }
 
-class DatePickerFragment(val onEnd: (timeData: MyTimeData) -> Unit) : DialogFragment(), DatePickerDialog.OnDateSetListener {
+class DatePickerFragment(val onEnd: (timeData: MyTimeData) -> Unit, val supportFragmentManager: FragmentManager,val mycontext: Context) : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the current date as the default date in the picker
@@ -104,12 +108,14 @@ class DatePickerFragment(val onEnd: (timeData: MyTimeData) -> Unit) : DialogFrag
         val day = c.get(Calendar.DAY_OF_MONTH)
 
         // Create a new instance of DatePickerDialog and return it
-        return DatePickerDialog(requireActivity().applicationContext, this, year, month, day)
+        return DatePickerDialog(mycontext, this, year, month, day)
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
         // Do something with the date chosen by the user
-        TimePickerFragment(onEnd, MyTimeData(year,month,day,0,0))
+        TimePickerFragment(onEnd, MyTimeData(year,month,day,0,0)).apply{
+            show(supportFragmentManager,"시간")
+        }
     }
 }
 data class MyTimeData(var year:Int, var month : Int, var day : Int, var hour : Int, var minute : Int)

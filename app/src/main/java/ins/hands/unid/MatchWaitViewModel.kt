@@ -21,7 +21,10 @@ class MatchWaitViewModel : ViewModel(), KoinComponent {
     var matchingList = MutableLiveData(mutableListOf<MatchingStatusData>())
     fun getMatchByPlace(placeid : String){
         viewModelScope.launch {
-            matchingList.value=  dataSource.getMatchingSearch(placeid).data
+            dataSource.getMatchingSearchId(placeid).apply{
+                Log.d("Recieved","${data.size} matches")
+                matchingList.value=data
+            }
 
         }
 
@@ -65,12 +68,13 @@ class MatchWaitViewModel : ViewModel(), KoinComponent {
 
     fun createMatch(placeId: String, message: String, it: MyTimeData) {
         viewModelScope.launch{
+            Log.d("DateFormat","${it.year.t()}-${it.month.t()}-${it.day.t()}T${it.hour.t()}:${it.minute.t()}:00")
             dataSource.createMatching(CreateMatchBody(placeId,"${it.year.t()}-${it.month.t()}-${it.day.t()}T${it.hour.t()}:${it.minute.t()}:00",message)).apply{
 
             }
         }
     }
     fun Int.t():String{
-        return "%2d".format(this)
+        return "%02d".format(this)
     }
 }

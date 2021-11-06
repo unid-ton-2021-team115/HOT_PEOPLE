@@ -1,6 +1,7 @@
 package ins.hands.unid
 
 import android.util.Log
+import com.google.gson.annotations.SerializedName
 import ins.hands.unid.data.MatchingData
 import ins.hands.unid.data.MatchingStatusData
 import ins.hands.unid.data.PlaceData
@@ -75,18 +76,18 @@ interface GetPlaceService {
     suspend fun joinMatcing(@Query("access_token") token : String, @Body body : MatchingIdClass) : JoinResponse
     @GET("/api/matching_join/{id}")
     suspend fun getMatchingById(@Path("id") id : Int) : GetMatchingResponse
-    @GET("/api/matching_join/search")
+    @GET("/api/matching/search")
     suspend fun getMatchingSearch(@Query("status") status : String) : GetMatchingListResponse
     @DELETE("/api/matching_join/{id}")
     suspend fun cancelMatching(@Path("id") id:Int) : StatusResponse
-    @GET("/api/matching_join/search")
+    @GET("/api/matching/search")
     suspend fun getMatchingSearchId(@Query("place_id") id : String) : GetMatchingListResponse
     @POST("/api/matching")
     suspend fun createMatching(@Query("access_token") token :String, @Body body: CreateMatchBody) : CreateMatchResponse
 
 }
 
-data class CreateMatchBody(val place_id : String, val matching_datetime : String, val description : String)
+data class CreateMatchBody(@SerializedName("place_id")val place_id : String, @SerializedName("matching_datetime")val matching_datetime : String,@SerializedName("description") val description : String)
 data class CreateMatchResponse(val status : String, val insertId : Int, val data : CreateMatchBody)
 data class MatchingListResponse(val status : String, val data : MutableList<MatchingData>)
 data class UserResponse(val status : String, val data : UserData)
