@@ -6,7 +6,7 @@ const moment = require('moment');
 router.post('/', passport.authenticate('kakao-token'), async (req, res) => {
     try {
         let sql = 'insert into matching_join value (null, ?, ?, ?)'; 
-        let [result] = await dbConn.query(sql, [req.body.matching_id, req.user.id, 'waiting']);
+        let [result] = await dbConn.query(sql, [req.body.matching_id, req.user.id, 'wait']);
 
         return res.status(201).json({
             status: "OK",
