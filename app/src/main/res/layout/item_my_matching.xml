@@ -17,67 +17,72 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-
-        <ImageView
+        <Button
             android:id="@+id/bt_close"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_baseline_cancel_24"
+            android:layout_width="80dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:paddingTop="0dp"
+            android:backgroundTint="@color/white"
+            android:paddingBottom="0dp"
+            android:text="취소"
+            android:fontFamily="@font/spoqa_han_sans_regular"
+            android:textSize="16dp"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"></Button>
+       <TextView
+           android:id="@+id/match_card_apply_name"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:layout_marginLeft="10dp"
+           android:fontFamily="@font/spoqa_han_sans_bold"
+           android:text="@{placeName}"
+           android:textSize="18dp"
+           android:textColor="@color/black"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           tools:text="우리집 어딘가" />
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/match_card_apply_location"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@{placeName}"
-            android:textSize="22sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="우리집 어딘가" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="24dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/spoqa_han_sans_regular"
+            android:textColor="@color/black"
             android:text="@{address}"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/bt_close"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8"
-            tools:text="미국 뉴욕주 뉴욕시 셰이 스타디움" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@{time}"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9"
-            tools:text="20년 11월 21일" />
-
+            app:layout_constraintTop_toBottomOf="@+id/match_card_apply_name"
+            tools:text="미국 뉴욕주 뉴욕시 셰이 스타디움"
+            tools:ignore="MissingConstraints" />
         <TextView
-            android:id="@+id/bt_open"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-
-            android:text="수락한 사람"
-            android:textSize="16sp"
+            android:id="@+id/match_card_apply_time"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:text="@{time}"
+            android:fontFamily="@font/spoqa_han_sans_regular"
+            android:textSize="18dp"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/match_card_apply_location"
+            tools:text="20년 11월 21일" />
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="18dp"
+            android:text="수락한 사람 "
+            android:textColor="@color/black"
+            android:id="@+id/bt_open"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/match_card_apply_time"></Button>
 
         <ImageView
             android:id="@+id/bt_tog"

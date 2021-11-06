@@ -53,12 +53,12 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        Log.d("HomeActivity","map내놔라")
+//        Log.d("HomeActivity","map내놔라")
         mapFragment = supportFragmentManager.findFragmentById(R.id.mapview) as SupportMapFragment
-        Log.d("HomeActivity","map내놔라")
+//        Log.d("HomeActivity","map내놔라")
         mapFragment.getMapAsync(this)
 
-        Log.d("HomeActivity","map내놔라")
+//        Log.d("HomeActivity","map내놔라")
         findViewById<ImageView>(R.id.bt_centor).setOnClickListener {
             setMapLocation(googlemap!!)
             Log.d("HomeActivity","RequestCentor")

@@ -20,6 +20,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UNID">
+        <activity android:name=".SplashScreen"
+            android:theme="@style/SplashTheme">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
         <activity
             android:name=".MyMatchingActivity"
             android:exported="true" />
@@ -33,7 +41,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
 
-            android:value="${MAPS_API_KEY}" />
+            android:value="AIzaSyBmmmuJCkML2VJG1egOuwyJwfvhlvLK_o4" />
 
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
@@ -53,13 +61,9 @@
         <activity
             android:name=".ApiTestActivity"
             android:exported="true" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".MainActivity" >
         </activity>
+
         <activity android:name=".HomeActivity" />
     </application>
 

@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="coral_candy">#FFE2EEFF</color>
     <color name="transparent_grey">#CCFFFFFF</color>
+    <color name="markersmall">#7846A4</color>
+    <color name="markerbig">#FFD23F8D</color>
+
 </resources>
