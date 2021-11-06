@@ -39,8 +39,13 @@ val networkModule = module{
             connectTimeout(5L, TimeUnit.SECONDS)
             writeTimeout(1L,TimeUnit.SECONDS)
             readTimeout(5L,TimeUnit.SECONDS)
-            retryOnConnectionFailure(true)
 
+            retryOnConnectionFailure(true)
+            addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
+            )
         }.build()
     }
     single<RemoteDateSourcePlace>{
