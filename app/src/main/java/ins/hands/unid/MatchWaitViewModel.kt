@@ -74,7 +74,7 @@ class MatchWaitViewModel : ViewModel(), KoinComponent {
         viewModelScope.launch {
             dataSource.getPlace(id).apply{
                 bind.placeName = data.name
-                bind.address = data.address
+                bind.address = data.address.substring(4)
             }
         }
     }
@@ -141,7 +141,7 @@ class MatchWaitViewModel : ViewModel(), KoinComponent {
 
     fun getMyMatchingWait(id : Int) {
         viewModelScope.launch{
-            dataSource.getMatchingByGuestId(id,"waiting").apply{
+            dataSource.getMatchingByGuestId(id,"wait").apply{
                 var matchings = mutableListOf<MatchingStatusData>()
                 data.forEach {
                     dataSource.getMatchingById(it.matching_id).apply{
@@ -153,17 +153,11 @@ class MatchWaitViewModel : ViewModel(), KoinComponent {
             }
         }
     }
-    fun getMyMatchingMakeup(id : Int) {
+    fun getMyMatchingMakeup() {
         viewModelScope.launch{
-            dataSource.getMatchingByGuestId(id,"makeup").apply{
-                var matchings = mutableListOf<MatchingStatusData>()
-                data.forEach {
-                    dataSource.getMatchingById(it.matching_id).apply{
-                        matchings.add(data)
-                    }
+            dataSource.getSuccessMatching().apply{
 
-                }
-                matchingList.value = matchings
+                matchingList.value = data
             }
         }
     }

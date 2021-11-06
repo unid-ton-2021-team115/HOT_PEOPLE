@@ -28,6 +28,7 @@ interface RemoteDateSourcePlace{
     suspend fun makeupMatching(id : Int, joinId : Int) : StatusResponse
     suspend fun closeMatching(id:Int) : StatusResponse
     suspend fun getPlaceType(type : String) : HotPlaceResponse
+    suspend fun getSuccessMatching() : GetMatchingListResponse
 }
 class RemoteDataSourcePlaceImpl(private val service : GetPlaceService) : RemoteDateSourcePlace{
     override suspend fun getPlace(id : String) : PlaceResponse = service.getPlace(id)
@@ -62,6 +63,7 @@ class RemoteDataSourcePlaceImpl(private val service : GetPlaceService) : RemoteD
     override suspend fun makeupMatching(id: Int, joinId: Int): StatusResponse = service.makeupMatching(id,TOKEN,joinId)
     override suspend fun closeMatching(id: Int): StatusResponse = service.closeMatching(id,TOKEN)
     override suspend fun getPlaceType(type: String): HotPlaceResponse =service.searchPlaceType(type)
+    override suspend fun getSuccessMatching(): GetMatchingListResponse =service.successMatching(TOKEN)
 }
 
 interface GetPlaceService {
@@ -100,6 +102,8 @@ interface GetPlaceService {
     suspend fun makeupMatching(@Path("id") id : Int, @Query("access_token") token : String, @Query("matching_join_id") joinId : Int) : StatusResponse
     @GET("/api/matching/{id}/cancel")
     suspend fun closeMatching(@Path("id") id : Int, @Query("access_token") token : String) : StatusResponse
+    @GET("/api/my_matching_join/makeup")
+    suspend fun successMatching(@Query("access_token") token:String) : GetMatchingListResponse
 
 
 }

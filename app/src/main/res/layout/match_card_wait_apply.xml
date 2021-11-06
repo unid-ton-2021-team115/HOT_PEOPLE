@@ -24,34 +24,36 @@
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
     tools:ignore="ExtraText">
+
     <TextView
         android:id="@+id/match_card_apply_name"
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:text="@{placeTitle}"
-        tools:text="매칭 장소"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/spoqa_han_sans_bold"
-        android:textSize="18dp"
+        android:text="@{placeTitle}"
         android:textColor="@color/black"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:autoSizeTextType="uniform"
+        tools:text="매칭 장소" />
 
     <TextView
         android:id="@+id/match_card_apply_location"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:fontFamily="@font/spoqa_han_sans_regular"
-        android:textSize="18dp"
-        android:textColor="@color/black"
         android:text="@{placeAddress}"
-        tools:text="장소"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/match_card_apply_name"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:text="장소" />
 
     <TextView
         android:id="@+id/match_card_apply_time"
@@ -113,11 +115,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileCardPhoto"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginLeft="20dp"
+            android:scaleType="centerCrop"
             android:src="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

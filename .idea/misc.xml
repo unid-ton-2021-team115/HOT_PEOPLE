@@ -18,13 +18,15 @@
         <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/xml/network_security_config.xml" value="0.19427083333333334" />
         <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_match_reference.xml" value="0.21822916666666667" />
-        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_match_wait.xml" value="0.3759057971014493" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_match_request.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_match_wait.xml" value="0.22" />
         <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_match_wait_confim.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_my_matching.xml" value="0.3713768115942029" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/bottom_navigation_tab.xml" value="0.21354166666666666" />
         <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/fragment_home_menu.xml" value="0.5" />
         <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/item_image.xml" value="0.21354166666666666" />
         <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/item_my_guest.xml" value="0.67" />
-        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/item_my_matching.xml" value="0.33" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/item_my_matching.xml" value="0.22" />
         <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/match_card_wait_apply.xml" value="0.5" />
         <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/match_card_wait_comfirm.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/place_info_fragment.xml" value="0.21354166666666666" />

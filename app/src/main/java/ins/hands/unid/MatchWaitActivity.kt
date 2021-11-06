@@ -56,7 +56,9 @@ class MatchWaitActivity : BaseActivity() {
 
             viewModel.getMatchByPlace(placeId)
         }
-        catch(e:NullPointerException){}
+        catch(e:Exception){
+            e.printStackTrace()
+        }
 
         bind.apply{
             adapter=this@MatchWaitActivity.adapter
@@ -68,8 +70,15 @@ class MatchWaitActivity : BaseActivity() {
             if(adapterMode==2) {
                 place = "참여한 매칭"
                 bind.btAddMatch.visibility= View.GONE
-                viewModel.getMyMatchingMakeup(prefs.getInt("user_id",0))
+                try {
+                    viewModel.getMyMatchingMakeup()
+                }
+                catch(e:Exception)
+                {
+                    e.printStackTrace()
+                }
             }
+            back.setOnClickListener { onBackPressed() }
         }
         viewModel.matchingList.observe(this,{
             adapter.dataList = it
