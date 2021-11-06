@@ -40,7 +40,7 @@ class MyMatchingAdapter(val getProfileImage : (image : ImageView,url : String)->
                 data.joinRequests.forEach {
                     val jid = it.id
                     DataBindingUtil.inflate<ItemMyGuestBinding>(LayoutInflater.from(context),R.layout.item_my_guest,null,true).apply{
-                        info= "${it.guest.nickname} ${it.guest.age} (${it.guest.gender})"
+                        info= "${it.guest.nickname} ${it.guest.age_range} (${it.guest.gender})"
                         getProfileImage(profileImage,it.guest.profile_url)
                         btAccept.setOnClickListener {
                             makeUp(data.id,jid)
