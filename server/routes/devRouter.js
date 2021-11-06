@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 const dbConn = require(`${process.cwd()}/dbConnection`);
-//const hotPlaceUpdate = require(`${process.cwd()}/middleware/hotPlaceUpdate`);
+const hotPlaceUpdate = require(`${process.cwd()}/middleware/hotPlaceUpdate`);
 
 router.get('/', async (req, res) => {
     console.log(req.user);
@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/update_hot_place', async (req, res) => {
-    //hotPlaceUpdate();
+    hotPlaceUpdate();
     res.redirect('/dev');
 });
 

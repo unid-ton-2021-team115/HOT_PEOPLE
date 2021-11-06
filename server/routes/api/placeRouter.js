@@ -23,6 +23,7 @@ router.get('/search', async (req, res) => {
         });
 
     } catch(err) {
+        console.error(err);
         return res.status(400).json({
             status: "NOT FOUND"
         });
@@ -49,6 +50,7 @@ router.get('/type/:type', async (req, res) => {
         });
 
     } catch(err) {
+        console.error(err);
         return res.status(400).json({
             status: "NOT FOUND"
         });
@@ -65,8 +67,15 @@ router.get('/:id', async (req, res) => {
             let [place_types] = await dbConn.query(sql, [result.id]);
             let types = [];
             for(let place_type of place_types)
-                types.push(place_type.type)
+                types.push(place_type.type);
             result.types = types;
+
+            // sql = 'select * from place_img where place_id = ?'; 
+            // let [place_imgs] = await dbConn.query(sql, [result.id]);
+            // let img_urls = [];
+            // for(let place_img of place_imgs)
+            //     img_urls.push(place_img.url);
+            // result.img_urls = img_urls;
         } 
 
         return res.status(200).json({
@@ -75,6 +84,7 @@ router.get('/:id', async (req, res) => {
         });
 
     } catch(err) {
+        console.error(err);
         return res.status(400).json({
             status: "NOT FOUND"
         });
