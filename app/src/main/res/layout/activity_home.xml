@@ -93,7 +93,7 @@
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/coral_candy"
                 android:textSize="18dp"
-                android:text="매치 목록"
+                android:text="매칭 목록"
                 android:fontFamily="@font/spoqa_han_sans_regular"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
