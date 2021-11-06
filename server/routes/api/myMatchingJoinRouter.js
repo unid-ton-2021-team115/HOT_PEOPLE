@@ -5,7 +5,10 @@ const passport = require('passport');
 router.get('/:status', passport.authenticate('kakao-token'), async (req, res) => {
     try {
         let sql = 'select * from matching_join where guest_id = ? and status = ?'; 
-        let [results] = await dbConn.query(sql, [req.user.id, req.params.status]);
+        let [matching_join] = await dbConn.query(sql, [req.user.id, req.params.status]);
+
+        sql = 'select * from matching where id = ?'; 
+        let [results] = await dbConn.query(sql, [matching_join[0].matching_id]);
 
         for(let result of results) {
             sql = 'select * from matching_join where matching_id = ?'; 
