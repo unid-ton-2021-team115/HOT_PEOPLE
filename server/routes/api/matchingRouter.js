@@ -31,6 +31,10 @@ router.get('/search', async (req, res) => {
         let [results] = await dbConn.query(sql, Object.values(req.query));
 
         for(let result of results) {
+            sql = 'select * from user_kakao where id = ?'; 
+            let [hostInfo] = await dbConn.query(sql, [result.host_id]);
+            result.host = hostInfo[0];
+
             sql = 'select * from matching_join where matching_id = ?'; 
             let [joinRequests] = await dbConn.query(sql, [result.id]);
 
@@ -100,6 +104,10 @@ router.get('/:id', async (req, res) => {
             sql = 'select * from matching_join where matching_id = ?'; 
             let [joinRequests] = await dbConn.query(sql, [result.id]);
 
+            sql = 'select * from user_kakao where id = ?'; 
+            let [hostInfo] = await dbConn.query(sql, [result.host_id]);
+            result.host = hostInfo[0];
+            
             for(let joinRequest of joinRequests) {
                 sql = 'select * from user_kakao where id = ?'; 
                 let [userInfo] = await dbConn.query(sql, [joinRequest.guest_id]);
