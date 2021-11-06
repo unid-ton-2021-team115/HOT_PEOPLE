@@ -37,29 +37,25 @@ CREATE TABLE matching
     `matching_datetime`  DATETIME       NULL, 
     `description`        TEXT           NULL, 
     `status`             VARCHAR(45)    NULL, 
-    `guest_id`           INT            NULL, 
      PRIMARY KEY (id)
 );
-
-ALTER TABLE matching
-    ADD CONSTRAINT FK_matching_place_id_place_id FOREIGN KEY (place_id)
-        REFERENCES place (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE matching
     ADD CONSTRAINT FK_matching_host_id_user_kakao_id FOREIGN KEY (host_id)
         REFERENCES user_kakao (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE matching
-    ADD CONSTRAINT FK_matching_guest_id_user_kakao_id FOREIGN KEY (guest_id)
-        REFERENCES user_kakao (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+    ADD CONSTRAINT FK_matching_place_id_place_id FOREIGN KEY (place_id)
+        REFERENCES place (id) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
 -- matching_join Table Create SQL
 CREATE TABLE matching_join
 (
-    `id`           INT    NOT NULL    AUTO_INCREMENT, 
-    `matching_id`  INT    NULL, 
-    `guest_id`     INT    NULL, 
+    `id`           INT            NOT NULL    AUTO_INCREMENT, 
+    `matching_id`  INT            NULL, 
+    `guest_id`     INT            NULL, 
+    `status`       VARCHAR(45)    NULL, 
      PRIMARY KEY (id)
 );
 
@@ -96,13 +92,19 @@ ALTER TABLE place_types
 
 
 
+
 set FOREIGN_KEY_CHECKS = 0;
 
---truncate access_record;
+insert into place value ('ChIJkUlNKsejfDUR7CwW83dt_WE', '해방촌닭', '대한민국 서울특별시 용산2가동 해방촌닭 1층 KR 서울특별시 용산구 신흥로 97-5 신흥시장 안쪽', 37.5451693, 126.98493, '02-6396-2020', 1, 8); 
+insert into place value ('ChIJLTIQgMSjfDURXwcF6wtPgfo', '용산공원', '대한민국 서울특별시 용산구 서빙고동 235-101"', 37.52103479999999, 126.9892602, null, 1, 7); 
 
-insert into place value ('ChIJBZMvC96hfDURYCUD0j-qQIA', '준호네돈가스', '대한민국 서울특별시 동작구 흑석동 190-37', 37.507487, 126.9592763, '02-825-8954', 1, 8); 
-insert into place value ('ChIJExJA9d2hfDUR8rFDuETY_pU', '터방내', '대한민국 서울특별시 동작구 흑석동 184-19', 37.5080055, 126.960744, '02-813-4434', 1, 10); 
+insert into matching value (null, 1978095294, 'ChIJkUlNKsejfDUR7CwW83dt_WE', "2021-11-06T01:58:21", "2021-11-10T15:10:00", "같이 가실 20대 구합니다~",  "wait");
+insert into matching_join value (null, 1, 1979121632, "wait");
 
+insert into matching value (null, 1979121632, 'ChIJkUlNKsejfDUR7CwW83dt_WE', "2021-11-05T21:12:21", "2021-11-20T13:30:00", "같이 노실분",  "makeup");
+insert into matching_join value (null, 2, 1978095294, "makeup");
+
+insert into matching value (null, 1978095294, 'ChIJLTIQgMSjfDURXwcF6wtPgfo', "2021-11-01T12:12:26", "2021-11-03T15:10:00", "맘에 안든다 싶으면 마감해요",  "cancel");
+insert into matching_join value (null, 3, 1979121632, "cancel");
 
 set FOREIGN_KEY_CHECKS = 1;
-
