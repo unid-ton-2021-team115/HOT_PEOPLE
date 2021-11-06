@@ -37,7 +37,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
 
-            android:value="ce1071ca2fd405b7ba6827444533f951" />
+            android:value="AIzaSyBmmmuJCkML2VJG1egOuwyJwfvhlvLK_o4" />
 
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
