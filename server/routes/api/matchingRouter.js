@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const dbConn= require(`${process.cwd()}/dbConnection`);
-const kakaoAuth = require(`${process.cwd()}/controllers/kakaoAuth`);
+const passport = require('passport');
 const moment = require('moment');
 
 router.post('/', async (req, res) => {
@@ -55,7 +55,7 @@ router.get('/search', async (req, res) => {
     }
 });
 
-router.post('/:id/:status', kakaoAuth.checkLogin, async (req, res) => {
+router.post('/:id/:status', passport.authenticate('kakao-token'), async (req, res) => {
     try {
         let sql = 'select * from matching where id = ?'; 
         let [matching] = await dbConn.query(sql, [req.params.id]);
