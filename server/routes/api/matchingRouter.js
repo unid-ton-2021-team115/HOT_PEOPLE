@@ -3,7 +3,7 @@ const dbConn= require(`${process.cwd()}/dbConnection`);
 const passport = require('passport');
 const moment = require('moment');
 
-router.post('/', async (req, res) => {
+router.post('/', passport.authenticate('kakao-token'), async (req, res) => {
     try {
         let sql = "insert into matching value (null, ?, ?, ?, ?, ?, ?)"; 
         let [result] = await dbConn.query(sql, [req.user.id, req.body.place_id, moment().format('YYYY-MM-DDTHH:mm:ss'), req.body.matching_datetime, 
