@@ -19,7 +19,7 @@ module.exports = () => {
             await dbConn.query(sql, [profile._json.id, profile._json.properties.nickname, profile._json.properties.profile_image, 
                 profile._json.kakao_account.gender == null ? null : profile._json.kakao_account.gender == 'female' ? '여성' : '남성', null,
                 profile._json.kakao_account.age_range == null ? null : profile._json.kakao_account.age_range.substr(0, 2) + '대', 0]);
-
+                
             sql = 'select * from user_kakao where id = ?';
             [user_db] = await dbConn.query(sql, [profile._json.id]);
         }
@@ -41,7 +41,8 @@ module.exports = () => {
         if(!user_db.length) { // 가입이 안 되어있으면 db에 추가
             sql = 'insert into user_kakao value (?, ?, ?, ?, ?, ?, ?)';
             await dbConn.query(sql, [profile._json.id, profile._json.properties.nickname, profile._json.properties.profile_image, 
-                profile._json.kakao_account.gender, null, profile._json.kakao_account.age_range, 0]);
+                profile._json.kakao_account.gender == null ? null : profile._json.kakao_account.gender == 'female' ? '여성' : '남성', null,
+                profile._json.kakao_account.age_range == null ? null : profile._json.kakao_account.age_range.substr(0, 2) + '대', 0]);
 
             sql = 'select * from user_kakao where id = ?';
             [user_db] = await dbConn.query(sql, [profile._json.id]);
