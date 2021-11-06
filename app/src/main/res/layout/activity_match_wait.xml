@@ -47,6 +47,7 @@
         <TextView
             android:id="@+id/matchReferenAddress"
             android:layout_width="wrap_content"
+            android:maxWidth="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
             android:fontFamily="@font/spoqa_han_sans_bold"
