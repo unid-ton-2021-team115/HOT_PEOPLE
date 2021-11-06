@@ -36,7 +36,12 @@ def get_content(driver, district):
         
     date = soup.select('time.FH9sR.Nzb55')[0]['datetime'][:10]
         
-    data = [district, place, date]
+    try:
+        imgsrc = soup.select('div.KL4Bh > img.FFVAD')[0]['src']
+    except:
+        imgsrc = 'https://image.freepik.com/free-vector/vector-illustration-of-the-concept-of-using-the-mobile-application-of-the-global-positioning-system_1441-364.jpg'
+        
+    data = [district, place, date, imgsrc]
     
     return data 
 
@@ -60,7 +65,7 @@ def web_scraping(email, password):
     driver = webdriver.Chrome(executable_path='./chromedriver', options=options)
     driver.maximize_window()
     driver.get(url)
-    time.sleep(10) 
+    time.sleep(5)
 
     # 인스타그램 로그인 (이메일)
     input_id = driver.find_elements_by_css_selector('input._2hvTZ.pexuQ.zyHYP')[0]
@@ -74,7 +79,7 @@ def web_scraping(email, password):
     input_pw.submit()
 
     # NoSuchElementException 방지를 위한 시간 대기 메소드
-    time.sleep(10)
+    time.sleep(5)
 
     results = [ ] 
 
@@ -82,11 +87,12 @@ def web_scraping(email, password):
         for theme in theme_list:
             url = insta_search(district+theme)
             driver.get(url)
-            time.sleep(10)
+            time.sleep(7)
 
             select_first(driver)
 
-            target = 100
+            target = 10
+            
             for i in range(target):
                 try:
                     data = get_content(driver, district)
@@ -99,7 +105,7 @@ def web_scraping(email, password):
                 
     ## 데이터프레임 생성
     results_df = pd.DataFrame(results)
-    results_df.columns = ['district', 'place', 'date']
+    results_df.columns = ['district', 'place', 'date', 'imgsrc']
 
     results_df['place'].replace('', np.nan, inplace=True)
     results_df.dropna(subset=['place'], inplace=True)
@@ -107,9 +113,18 @@ def web_scraping(email, password):
     results_df['count'] = results_df.groupby('place')['place'].transform('count')
     results_df = results_df.drop_duplicates(subset=['place'])
 
-    js = results_df.to_json(orient='records', force_ascii=False)
+    # js = results_df.to_json(orient='records', force_ascii=False)
+    data = []
+    
+    for i in range(0,len(results_df)):
+        obj = {}
+        obj['district']=results_df.iloc[i][0]
+        obj['place']=results_df.iloc[i][1]
+        obj['date']=results_df.iloc[i][2]
+        obj['imgsrc']=results_df.iloc[i][3]
+        data.append(obj)
 
     # 데이터프레임 CSV 파일로 변환
     results_csv = results_df.to_csv('./instagram_web_scraping.csv',index=False)
     
-    return js;
+    return data;
