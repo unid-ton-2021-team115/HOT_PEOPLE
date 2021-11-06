@@ -214,7 +214,6 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
 
     fun bindNavigationBar(){
         btList.add(findViewById(R.id.btn_bottom_navi_home_tab))
-
         btList.add(findViewById(R.id.btn_bottom_navi_home_cafe))
 
         btList.add(findViewById(R.id.btn_bottom_navi_home_liquor))

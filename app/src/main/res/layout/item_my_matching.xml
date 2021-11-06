@@ -85,7 +85,7 @@
             android:paddingRight="0dp"
             android:layout_marginLeft="10dp"
             android:textSize="18dp"
-            android:text="수락한 사람 "
+            android:text="요청한 사람 "
             android:textColor="@color/black"
             android:id="@+id/bt_open"
             app:layout_constraintStart_toStartOf="parent"
