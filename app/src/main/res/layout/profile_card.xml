@@ -4,30 +4,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:background="#dde6aa"
+    android:layout_height="80dp"
+    android:background="#ffffe3"
     android:elevation="5dp">
-
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileCardPhoto"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="20dp"
+        android:src="@color/black"
+
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/profileCardName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이름"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/profileCardAge"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/spoqa_han_sans_bold"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/profileCardAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="나이"
-
-        android:textSize="8pt"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/spoqa_han_sans_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/profileCardGender"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +55,9 @@
         android:layout_height="wrap_content"
         android:text="(성별)"
 
-        android:textSize="8pt"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/spoqa_han_sans_bold"
         android:layout_marginRight="20dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
