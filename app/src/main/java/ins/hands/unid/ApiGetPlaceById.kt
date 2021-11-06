@@ -27,6 +27,7 @@ interface RemoteDateSourcePlace{
     suspend fun getMatchingByGuestId(id : Int, status : String) : MatchingListResponse
     suspend fun makeupMatching(id : Int, joinId : Int) : StatusResponse
     suspend fun closeMatching(id:Int) : StatusResponse
+    suspend fun getPlaceType(type : String) : HotPlaceResponse
 }
 class RemoteDataSourcePlaceImpl(private val service : GetPlaceService) : RemoteDateSourcePlace{
     override suspend fun getPlace(id : String) : PlaceResponse = service.getPlace(id)
@@ -60,7 +61,7 @@ class RemoteDataSourcePlaceImpl(private val service : GetPlaceService) : RemoteD
     override suspend fun getMatchingByGuestId(id : Int, status : String) : MatchingListResponse = service.getMatchingByGuestId(id,status)
     override suspend fun makeupMatching(id: Int, joinId: Int): StatusResponse = service.makeupMatching(id,TOKEN,joinId)
     override suspend fun closeMatching(id: Int): StatusResponse = service.closeMatching(id,TOKEN)
-
+    override suspend fun getPlaceType(type: String): HotPlaceResponse =service.searchPlaceType(type)
 }
 
 interface GetPlaceService {
@@ -70,6 +71,9 @@ interface GetPlaceService {
     suspend fun getPlace(@Path("id") id : String) : PlaceResponse
     @GET("/api/place/search")
     suspend fun searchPlace(@Query("name") name : String) : HotPlaceResponse
+    @GET("/api/hot_place/type/{type}")
+    suspend fun searchPlaceType(@Path("type") type : String) : HotPlaceResponse
+
     @GET("/auth/kakao/token")
     suspend fun getUserData(@Query("access_token") access_token : String) : UserResponse
     @GET("/api/my_matching/wait")

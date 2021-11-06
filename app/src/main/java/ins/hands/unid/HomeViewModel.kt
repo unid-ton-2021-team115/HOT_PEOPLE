@@ -23,8 +23,21 @@ class HomeViewModel : ViewModel(), KoinComponent {
 
     fun getHotPlace(placeTheme : Int = -1){
         viewModelScope.launch {
+            if(placeTheme==-1)
             dataSource.getHotPlace().apply{
                 placeList.value = this.data.filter{true}.toMutableList()
+            }
+            else{
+                val type = when(placeTheme){
+                    0->"식당"
+                    1->"카페"
+                    2->"술집"
+                    3->"파티"
+                    else->""
+                }
+                dataSource.getPlaceType(type).apply{
+                    placeList.value=data
+                }
             }
         }
     }

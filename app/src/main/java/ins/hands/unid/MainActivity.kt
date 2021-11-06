@@ -36,7 +36,29 @@ class MainActivity : BaseActivity() {
         hash=Utility.getKeyHash(this)
         bind.apply{
             kakaoSignInBtn.setOnClickListener {
+                if(UserApiClient.instance.isKakaoTalkLoginAvailable(this@MainActivity))
                 kakaoLogin()
+                else KakaoLogin2()
+            }
+        }
+    }
+
+    private fun KakaoLogin2() {
+        UserApiClient.instance.loginWithKakaoAccount(this) { token, error ->
+            if (error != null) {
+                Log.e(TAG, "로그인 실패", error)
+            }
+            else if (token != null) {
+                Log.i(TAG, "로그인 성공 ${token.accessToken}")
+                TOKEN = token.accessToken
+
+                viewModel.getUserData(token.accessToken) {
+                    runOnUiThread {
+                        startActivity(Intent(this, HomeActivity::class.java).apply {
+
+                        })
+                    }
+                }
             }
         }
     }

@@ -70,6 +70,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
+
             <TextView
                 android:id="@+id/tv_address"
                 android:layout_width="250dp"
