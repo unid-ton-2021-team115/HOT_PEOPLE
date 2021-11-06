@@ -34,7 +34,7 @@ class HomeMenuFragment : Fragment() {
         viewModel.getProfileImage(prefs.getString("user_profile_url","")!!)
         bind?.apply{
 
-            tvAge.setText("${prefs.getInt("user_age",20)}(${prefs.getString("user_gender","무성")})")
+            tvAge.setText("${prefs.getString("user_age_range","20대")}(${prefs.getString("user_gender","무성")})")
 
             btMyMatching.setOnClickListener {
                 startActivity(Intent(context,MyMatchingActivity::class.java))
