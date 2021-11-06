@@ -45,7 +45,7 @@ data class UserData(
     val profile_url : String,
     val gender : String,
     val age : Int,
-    val ageRange : String,
+    val age_range : String,
     val likes : Int,
     val accessToken : String = ""
 )
