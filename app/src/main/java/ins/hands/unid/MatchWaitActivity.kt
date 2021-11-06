@@ -23,10 +23,6 @@ import java.lang.NullPointerException
 import java.text.DateFormat
 import java.util.*
 
-
-
-
-
 class MatchWaitActivity : BaseActivity() {
     val viewModel : MatchWaitViewModel by viewModel()
     val bind by binding<ActivityMatchWaitBinding>(R.layout.activity_match_wait)
