@@ -13,16 +13,16 @@
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:background="#C4C4C4"
+    android:layout_height="220dp"
+    android:background="#FFFFFF"
     android:elevation="5dp"
     tools:ignore="ExtraText">
 
     <TextView
-        android:id="@+id/match_card_apply_time"
+        android:id="@+id/match_card_apply_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+
         android:layout_marginTop="10dp"
         android:text="@{placeTitle}"
         tools:text="매칭 장소"
@@ -32,14 +32,30 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
+        android:id="@+id/match_card_apply_location"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="@font/spoqa_han_sans_regular"
+        android:textSize="18dp"
+        android:textColor="@color/black"
         android:text="@{placeAddress}"
-        tools:text="어딘가"
-        android:textSize="8pt"
+        tools:text="장소"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/match_card_apply_time"
+        app:layout_constraintTop_toBottomOf="@+id/match_card_apply_name"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/match_card_apply_time"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:text="매칭 날짜 / 시간"
+        android:fontFamily="@font/spoqa_han_sans_regular"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/match_card_apply_location"
         tools:ignore="MissingConstraints" />
 
     <ImageView
