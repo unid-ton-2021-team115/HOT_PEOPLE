@@ -58,4 +58,10 @@ val viewModelModule = module{
     viewModel {
         HomeViewModel()
     }
+    viewModel{
+        HomeMenuViewModel()
+    }
+    viewModel{
+        MatchWaitViewModel()
+    }
 }

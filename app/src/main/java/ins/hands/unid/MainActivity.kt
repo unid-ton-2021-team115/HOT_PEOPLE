@@ -13,6 +13,7 @@ import ins.hands.unid.databinding.ActivityMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
+var TOKEN : String = ""
 class MainActivity : BaseActivity() {
     val TAG = "MainActivity"
     val bind by binding<ActivityMainBinding>(R.layout.activity_main)
@@ -42,6 +43,8 @@ class MainActivity : BaseActivity() {
             }
             else if (token != null) {
                 Log.i(TAG, "로그인 성공 ${token.accessToken}")
+                TOKEN = token.accessToken
+
                 viewModel.getUserData(token.accessToken) {
                     runOnUiThread {
                         startActivity(Intent(this, HomeActivity::class.java).apply {

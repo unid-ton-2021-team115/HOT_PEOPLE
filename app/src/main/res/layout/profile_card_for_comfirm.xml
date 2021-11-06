@@ -69,7 +69,8 @@
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/bt_dismiss"
+
+        android:id="@+id/bt_centor"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_marginEnd="5dp"
@@ -96,6 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:maxImageSize="48dp"
+
         tools:ignore="MissingConstraints"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
