@@ -188,7 +188,13 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
     var currentMarker : Marker? = null
 
     fun closeInfo() {
-        if(currentMarker!=null) currentMarker?.setIcon(markerSmall)
+        try {
+            if (currentMarker != null) currentMarker?.setIcon(markerSmall)
+        }
+        catch(e:Exception)
+        {
+            e.printStackTrace()
+        }
         findViewById<View>(R.id.info_layout).visibility = View.GONE
     }
 
@@ -207,10 +213,12 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
     }
 
     fun bindNavigationBar(){
-        btList.add(findViewById(R.id.btn_bottom_navi_home_cafe))
-        btList.add(findViewById(R.id.btn_bottom_navi_home_celeb))
-        btList.add(findViewById(R.id.btn_bottom_navi_home_liquor))
         btList.add(findViewById(R.id.btn_bottom_navi_home_tab))
+
+        btList.add(findViewById(R.id.btn_bottom_navi_home_cafe))
+
+        btList.add(findViewById(R.id.btn_bottom_navi_home_liquor))
+        btList.add(findViewById(R.id.btn_bottom_navi_home_celeb))
 
         btList.forEach {
             val pos = btList.indexOf(it)
