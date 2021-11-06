@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const dbConn = require(`${process.cwd()}/dbConnection`);
 const passport = require('passport');
-const kakaoAuth = require(`${process.cwd()}/controllers/kakaoAuth`);
 
 router.get('/:status', passport.authenticate('kakao-token'), async (req, res) => {
     try {
@@ -15,7 +14,7 @@ router.get('/:status', passport.authenticate('kakao-token'), async (req, res) =>
             sql = 'select * from user_kakao where id = ?'; 
             let [hostInfo] = await dbConn.query(sql, [result.host_id]);
             result.host = hostInfo[0];
-            
+
             for(let joinRequest of joinRequests) {
                 sql = 'select * from user_kakao where id = ?'; 
                 let [userInfo] = await dbConn.query(sql, [joinRequest.guest_id]);

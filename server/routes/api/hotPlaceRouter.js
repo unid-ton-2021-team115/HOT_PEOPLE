@@ -22,6 +22,7 @@ router.get('/', async (req, res) => {
         });
 
     } catch(err) {
+        console.error(err);
         return res.status(400).json({
             status: "NOT FOUND"
         });
@@ -48,6 +49,7 @@ router.get('/type/:type', async (req, res) => {
         });
 
     } catch(err) {
+        console.error(err);
         return res.status(400).json({
             status: "NOT FOUND"
         });
