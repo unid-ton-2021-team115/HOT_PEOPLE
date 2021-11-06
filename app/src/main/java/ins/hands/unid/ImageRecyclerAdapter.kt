@@ -9,16 +9,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import ins.hands.unid.databinding.ItemImageBinding
 
-class ImageRecyclerAdapter(val bigImage:ImageView, val bigLayout : View, val imageBind : (image : ImageView, url : String)->Unit) : RecyclerView.Adapter<ImageRecyclerAdapter.ViewHolder>() {
+class ImageRecyclerAdapter(val mainImage : (url:String)->Unit, val imageBind : (image : ImageView, url : String)->Unit) : RecyclerView.Adapter<ImageRecyclerAdapter.ViewHolder>() {
     inner class ViewHolder(val binding : ItemImageBinding, val context :Context) : RecyclerView.ViewHolder(binding.root){
         fun bind(url : String)
         {
             binding.apply{
                 imageBind(image,url)
                 image.setOnClickListener {
-                    bigLayout.visibility= View.VISIBLE
-                    imageBind(bigImage,url)
-                    bigLayout.setOnClickListener {  }
+                    mainImage(url)
                 }
             }
         }

@@ -48,7 +48,7 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
     lateinit var mapFragment: SupportMapFragment
     lateinit var menuFragment : HomeMenuFragment
     lateinit var imageAdapter : ImageRecyclerAdapter
-
+    lateinit var infoFragment : PlaceInfoFragment
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +66,13 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
 
         /*
         findViewById<RecyclerView>(R.id.image_recylcer).adapter = imageAdapter*/
+        infoFragment= PlaceInfoFragment(
+
+        ).apply{
+            bindMainImage={
+
+            }
+        }
         findViewById<View>(R.id.drawer_bt).setOnClickListener { openFrag() }
         fusedLocationClient = FusedLocationProviderClient(this)
         fusedLocationClient.requestLocationUpdates(LocationRequest(), object : LocationCallback(){
@@ -77,19 +84,21 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
         findViewById<View>(R.id.menu_fragment).visibility=View.GONE
         observePlaceData()
         observeMapTheme()
-        findViewById<View>(R.id.bt_gotoList).setOnClickListener {
+        bindNavigationBar()
+        bitmapMarker()
+        menuFragment = HomeMenuFragment()
+        /*findViewById<View>(R.id.bt_gotoList).setOnClickListener {
             if(currentMarker!=null)
             startActivity(Intent(this,MatchWaitActivity::class.java).apply{
                 putExtra("placeId",viewModel.placeList.value!!.find{it.name==currentMarker!!.title}!!.id)
             })
         }
-        bindNavigationBar()
-        bitmapMarker()
-        menuFragment = HomeMenuFragment()
+
 
         imageAdapter = ImageRecyclerAdapter(bind.bigImage,bind.bigImageLayout){image, url ->
             //viewModel.bindImage(url,image)
         }
+        */
 
         viewModel.getHotPlace(-1)
     }
@@ -127,10 +136,15 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
 
 
             findViewById<View>(R.id.info_layout).visibility=View.VISIBLE
-            findViewById<TextView>(R.id.tv_title).setText(it.title)
+            //findViewById<TextView>(R.id.tv_title).setText(it.title)
             var address = viewModel.placeList.value?.find{it.name==currentMarker?.title}?.address
+            var id = viewModel.placeList.value?.find{it.name==currentMarker?.title}?.id
             if(address?.startsWith("대한민국")==true) address = address.substring(5)
-            findViewById<TextView>(R.id.tv_address).setText(address)
+            try{infoFragment.setPlace(it.title,address!!,id!!)}
+            catch(e:Exception){
+                e.printStackTrace()
+            }
+            //findViewById<TextView>(R.id.tv_address).setText(address)
             true
 
         }
