@@ -9,62 +9,68 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@drawable/round_rect"
-        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:layout_height="80dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="#ffffe3"
+        android:elevation="5dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            app:cardCornerRadius="30dp"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="20dp"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/profile_image"
-                android:layout_width="48dp"
-
-                android:layout_height="48dp"
-                tools:srcCompat="@tools:sample/avatars" />
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@color/black" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/profileCardInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/spoqa_han_sans_regular"
             android:text="@{info}"
             android:textColor="@color/black"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
             app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
             tools:text="꽃미남 24(남)" />
 
-        <ImageView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/bt_close"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_baseline_cancel_24"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/baseline_cancel_black_18dp"
+            app:backgroundTint="@android:color/white"
+            app:fabCustomSize="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/bt_accept"
+            app:layout_constraintEnd_toStartOf="@id/bt_accept"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black" />
+            app:maxImageSize="48dp"
+            tools:ignore="MissingConstraints"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
-        <ImageView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/bt_accept"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_baseline_check_circle_24"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="5dp"
+
+            android:src="@drawable/baseline_check_circle_black_18dp"
+            app:backgroundTint="@android:color/white"
+            app:fabCustomSize="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black" />
+            app:maxImageSize="48dp"
+
+            tools:ignore="MissingConstraints"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

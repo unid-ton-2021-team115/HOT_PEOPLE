@@ -23,10 +23,6 @@ import java.lang.NullPointerException
 import java.text.DateFormat
 import java.util.*
 
-
-
-
-
 class MatchWaitActivity : BaseActivity() {
     val viewModel : MatchWaitViewModel by viewModel()
     val bind by binding<ActivityMatchWaitBinding>(R.layout.activity_match_wait)
@@ -74,8 +70,15 @@ class MatchWaitActivity : BaseActivity() {
             if(adapterMode==2) {
                 place = "참여한 매칭"
                 bind.btAddMatch.visibility= View.GONE
-                viewModel.getMyMatchingMakeup()
+                try {
+                    viewModel.getMyMatchingMakeup()
+                }
+                catch(e:Exception)
+                {
+                    e.printStackTrace()
+                }
             }
+            back.setOnClickListener { onBackPressed() }
         }
         viewModel.matchingList.observe(this,{
             adapter.dataList = it

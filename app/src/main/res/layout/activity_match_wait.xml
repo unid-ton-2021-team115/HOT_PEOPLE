@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     tools:context=".MatchWaitActivity">
     <data>
        <variable
@@ -17,7 +16,19 @@
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/matchbackground">
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="10dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background='@drawable/baseline_arrow_back_ios_black_24dp'
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -29,13 +40,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/matchReferenceName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@{place}"
+            android:fontFamily="@font/spoqa_han_sans_bold"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="22dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,27 +54,34 @@
             tools:text="우리집" />
 
         <TextView
-            android:id="@+id/textadd"
+            android:id="@+id/matchReferenAddress"
             android:layout_width="wrap_content"
+            android:maxWidth="250dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:fontFamily="@font/spoqa_han_sans_bold"
             android:text="@{address}"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:gravity="center"
+            android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            tools:text="경상남도 진주시 어딘가인데" />
+            app:layout_constraintTop_toBottomOf="@+id/matchReferenceName"
+            tools:text="some where"/>
 
-        <ImageView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/bt_add_match"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:src="@drawable/ic_baseline_add_circle_24"
+            app:maxImageSize = "56dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/baseline_add_circle_black_24dp"
+            app:fabCustomSize="48dp"
+            android:backgroundTint="#00000000"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/include"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:ignore="MissingConstraints"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

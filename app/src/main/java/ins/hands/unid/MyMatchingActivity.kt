@@ -30,6 +30,7 @@ class MyMatchingActivity : BaseActivity() {
         }
         bind.apply{
             adapter=mAdapter
+            back.setOnClickListener { onBackPressed() }
         }
 
         viewModel.getMyMatching()
