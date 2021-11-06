@@ -65,17 +65,14 @@ router.get('/:id/:status', passport.authenticate('kakao-token'), async (req, res
         let [matching] = await dbConn.query(sql, [req.params.id]);
         matching = matching[0];
 
-        if(matching.host_id !== req.user.id)
-            return res.status(400).json({
-                status: "YOU'RE NOT HOST"
-            });
 
         sql = 'select * from matching_join where matching_id = ?'; 
         let [joinRequests] = await dbConn.query(sql, [req.params.id]);
     
         for(let joinRequest of joinRequests) {
             sql = 'update matching_join set status = ? where id = ?'; 
-            await dbConn.query(sql, [req.params.matching_join_id === joinRequest.id ? 'makeup' : 'cancel', joinRequest.id]);
+            console.log(req.query.matching_join_id, joinRequest.id)
+            await dbConn.query(sql, [parseInt(req.query.matching_join_id) === parseInt(joinRequest.id) ? 'makeup' : 'cancel', joinRequest.id]);
         }
 
         sql = 'update matching set status = ? where id = ?'; 
