@@ -8,6 +8,9 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const cors = require('cors');
 const passport = require('passport');
+const hotPlaceUpdate = require('./middleware/hotPlaceUpdate');
+var cron = require('node-cron');
+
 require('moment-timezone');
 require('moment').tz.setDefault("Asia/Seoul");;
 require('dotenv').config();
@@ -37,6 +40,14 @@ app.use(passport.session());
 
 const kakaoPassportConfig = require('./config/kakaoPassport');
 kakaoPassportConfig();
+
+// 매일 정각마다 핫플레이스 업데이트
+cron.schedule('00 00 00 * * 0-6', () => {
+    hotPlaceUpdate();
+}, {
+    scheduled: true,
+    timezone: 'Asia/Seoul'
+});
 
 //setting cors 
 app.all('/*', (req, res, next) => {
