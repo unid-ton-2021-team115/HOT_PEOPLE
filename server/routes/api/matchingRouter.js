@@ -75,7 +75,7 @@ router.get('/:id/:status', passport.authenticate('kakao-token'), async (req, res
     
         for(let joinRequest of joinRequests) {
             sql = 'update matching_join set status = ? where id = ?'; 
-            let [joinRequests] = await dbConn.query(sql, [req.params.matching_join_id === joinRequest.id ? 'makeup' : 'cancel', joinRequest.id]);
+            await dbConn.query(sql, [req.params.matching_join_id === joinRequest.id ? 'makeup' : 'cancel', joinRequest.id]);
         }
 
         sql = 'update matching set status = ? where id = ?'; 
