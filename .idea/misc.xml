@@ -13,13 +13,14 @@
         <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_match_reference.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/bottom_drawer_card.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/bottom_navigation_tab.xml" value="0.5" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/fragment_home_menu.xml" value="0.25" />
         <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/match_card_wait_apply.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/profile_card.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/xml/network_security_config.xml" value="0.19427083333333334" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -13,13 +13,19 @@ data class PlaceData(
 
 data  class MatchingData(
     val id: Int,
-    val hostId : Int,
-    val placeId : String,
-    val createDatetime : Long,
-    val matchingDateTIme : Long,
+    val host_id : Int,
+    val place_id : String,
+    val create_date_time : String,
+    val matching_date_time : String,
     val description : String,
     val status : String,
-    val guestId : Int
+    val guest_id : Int
+)
+data class MatchingStatusData(
+    val id : Int,
+    val matching_id : Int,
+    val guest_id: Int,
+    val status: String
 )
 data class UserData(
     val id : Int,
@@ -31,11 +37,7 @@ data class UserData(
     val likes : Int,
     val accessToken : String
 )
-data class MatchingJoinData(
-    val id : Int,
-    val matchingId : Int,
-    val guestId : Int
-)
+
 data class PlaceTypesData(
     val id : Int,
     val placeId : String,
