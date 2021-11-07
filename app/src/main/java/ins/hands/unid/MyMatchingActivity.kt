@@ -32,8 +32,13 @@ class MyMatchingActivity : BaseActivity() {
             adapter=mAdapter
             back.setOnClickListener { onBackPressed() }
         }
-
-        viewModel.getMyMatching()
+        try {
+            viewModel.getMyMatching()
+        }
+        catch (e:Exception)
+        {
+            e.printStackTrace()
+        }
         viewModel.matchingList.observe(this,{
             mAdapter?.dataList = it
             mAdapter?.notifyDataSetChanged()
