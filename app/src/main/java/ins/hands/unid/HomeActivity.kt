@@ -222,13 +222,13 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
 
         btList.forEach {
             val pos = btList.indexOf(it)
-            it.background.setTint(colorDisCheck)
+           // it.background.setTint(colorDisCheck)
             it.setOnClickListener {
                 btList.forEach { it.background.setTint(colorDisCheck) }
                 if(mapTheme.value==pos) mapTheme.value= -1
                 else {
                     mapTheme.value = pos
-                    it.background.setTint(colorOnCheck)
+                   // it.background.setTint(colorOnCheck)
                 }
             }
         }
