@@ -222,7 +222,7 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
 
         btList.forEach {
             val pos = btList.indexOf(it)
-           // it.background.setTint(colorDisCheck)
+            it.background.alpha=0
             it.setOnClickListener {
                 btList.forEach { it.background.setTint(colorDisCheck) }
                 if(mapTheme.value==pos) mapTheme.value= -1
