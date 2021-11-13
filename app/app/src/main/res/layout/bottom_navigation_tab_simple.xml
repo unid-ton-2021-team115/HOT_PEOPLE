@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_rect"
+    android:elevation="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/btn_bottom_navi_home_tab"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/round_rect"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/button_home_food_simple" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/btn_bottom_navi_home_cafe"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+
+        android:background="@drawable/round_rect"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:src="@drawable/button_home_coffee_simple" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/btn_bottom_navi_home_liquor"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/round_rect"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:src="@drawable/button_home_drink_simple" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/btn_bottom_navi_home_celeb"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/round_rect"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:src="@drawable/button_home_culture_simple" />
+    </RelativeLayout>
+</LinearLayout>

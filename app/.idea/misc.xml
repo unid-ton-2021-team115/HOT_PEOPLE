@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Jinnyeong/.gradle/caches/transforms-2/files-2.1/fc51a4ce0c23b0249502deb0f69c3b8f/appcompat-1.3.1/res/layout/abc_search_view.xml" value="0.19427083333333334" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/drawable/ic_baseline_place_24.xml" value="0.2109375" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/drawable/ic_baseline_place_32.xml" value="0.2109375" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/drawable/round_rect.xml" value="0.21041666666666667" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_api_test.xml" value="0.18478260869565216" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_home.xml" value="0.22" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_match_reference.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/bottom_drawer_card.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/bottom_navigation_tab.xml" value="0.5" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/match_card_wait_apply.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/profile_card.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Jinnyeong/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/xml/network_security_config.xml" value="0.19427083333333334" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_match_reference.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_match_request.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_match_wait.xml" value="0.22" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_match_wait_confim.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/activity_my_matching.xml" value="0.3713768115942029" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/bottom_navigation_tab.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/fragment_home_menu.xml" value="0.5" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/item_image.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/item_my_guest.xml" value="0.67" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/item_my_matching.xml" value="0.22" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/match_card_wait_apply.xml" value="0.5" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/match_card_wait_comfirm.xml" value="0.21822916666666667" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/place_info_fragment.xml" value="0.21354166666666666" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/profile_card.xml" value="0.22" />
+        <entry key="..\:/Users/wlssu/Documents/GitHub/unid-ton-2021-team115-application/app/src/main/res/layout/profile_card_for_comfirm.xml" value="0.21822916666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

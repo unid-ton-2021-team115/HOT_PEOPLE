@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="placeName"
+            type="String" />
+        <variable
+            name="address"
+            type="String"/>
+        <variable
+            name="time"
+            type="String"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        >
+        <Button
+            android:id="@+id/bt_close"
+            android:layout_width="80dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:paddingTop="0dp"
+            android:backgroundTint="@color/white"
+            android:paddingBottom="0dp"
+            android:text="취소"
+            android:fontFamily="@font/spoqa_han_sans_regular"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></Button>
+       <TextView
+           android:id="@+id/match_card_apply_name"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:layout_marginLeft="10dp"
+           android:fontFamily="@font/spoqa_han_sans_bold"
+           android:text="@{placeName}"
+           android:textSize="18dp"
+           android:textColor="@color/black"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           tools:text="home" />
+
+        <TextView
+            android:id="@+id/match_card_apply_location"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/spoqa_han_sans_regular"
+            android:maxWidth="300dp"
+            android:text="@{address}"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/match_card_apply_name"
+            tools:ignore="MissingConstraints"
+            tools:text="미국 뉴욕주 뉴욕시 셰이 스타디움" />
+        <TextView
+            android:id="@+id/match_card_apply_time"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:text="@{time}"
+            android:fontFamily="@font/spoqa_han_sans_regular"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/match_card_apply_location"
+            tools:text="20년 11월 21일" />
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="18dp"
+            android:text="요청한 사람 "
+            android:textColor="@color/black"
+            android:id="@+id/bt_open"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/match_card_apply_time"></Button>
+
+        <ImageView
+            android:id="@+id/bt_tog"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="120dp"
+            android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/bt_open"
+            app:layout_constraintStart_toStartOf="@+id/bt_open"
+            app:layout_constraintTop_toTopOf="@+id/bt_open" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/guest_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_open">
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
