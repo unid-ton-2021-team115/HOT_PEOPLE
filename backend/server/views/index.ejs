@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style>
+      .messages { list-style-type: none; margin: 0; padding: 0; }
+      .messages li { padding: 5px 10px; }
+      .messages li{ background: #eee; }
+      form{width:200px;display:inline;}
+    </style>    
+    <meta charset="utf-8">
+    <title>Index Page</title>
+  </head>
+
+  <body>
+    <form action="/auth/kakao/login" method="get">
+      <button type="submit">카카오 로그인</button>
+    </form>
+    <form action="/auth/kakao/logout" method="get">
+      <button type="submit">카카오 로그아웃</button>
+    </form>
+    <div id="auth"></div>
+
+    <br/><br/><br/>
+    
+    <input type="text" id="place_text_input"> 
+    <button id="place_text_search">이름으로 플레이스 검색</button>
+    <ul class="messages" id="place_text"></ul>
+    <br/>
+
+    <input type="text" id="place_id_input"> 
+    <button id="place_id_search">id로 플레이스 검색</button>
+    <ul class="messages" id="place_id"></ul>
+    <br/>
+
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.1/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script>
+    $(function () {
+      jQuery(document).ready(function() {
+        axios.get('/auth/kakao/check')
+        .then(function(res) {
+          console.log(res.data)
+            $('#auth').append(JSON.stringify(res.data)); 
+        });
+
+      });
+
+      $('#place_text_search').click(function(e) {
+        e.preventDefault();
+        axios.get('api/google_map/place?name='+$('#place_text_input').val()).then(function(res) {
+          $('#place_text').html($('<li>').text(JSON.stringify(res.data))); 
+        });
+        return false;
+      });
+      
+      $('#place_id_search').click(function(e) {
+        e.preventDefault();
+        axios.get('api/google_map/place/'+$('#place_id_input').val()).then(function(res) {
+          $('#place_id').html($('<li>').text(JSON.stringify(res.data))); 
+        });
+        return false;
+      });
+
+
+    });
+  </script>
+</html>
