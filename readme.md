@@ -1,10 +1,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/unid-ton-2021-team115/HOT_PEOPLE">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="120" height="120">
   </a>
 
-  <h3 align="center">HOT PEOPLE</h3>
+  <h2 align="center">HOT PEOPLE</h2>
 
   <p align="center">
     <em> 오늘의 <b>핫플</b>에서 새로운 <b>인연<b/>을</em>
@@ -15,7 +15,7 @@
   </p>
 </div>
 
-<img src="images/appdesign.png"  width="auto" height="80">
+<img src="images/appdesign.png">
 
 ---
 
