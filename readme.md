@@ -4,12 +4,11 @@
     <img src="images/logo.png" alt="Logo" width="120" height="120">
   </a>
 
-  <h2 align="center">HOT PEOPLE</h2>
+  <h3 align="center">HOT PEOPLE</h3>
 
   <p align="center">
     <em> 오늘의 <b>핫플</b>에서 새로운 <b>인연<b/>을</em>
     <br />
-    <a href="https://github.com/unid-ton-2021-team115/HOT_PEOPLE/blob/main/readme.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
   </p>
@@ -85,7 +84,7 @@
 <table width="900">
 <thead>
     <tr>
-        <th width="50" align="center">이름</th>
+        <th width="100" align="center">이름</th>
 		<th width="100" align="center">소속</th>
         <th width="250" align="center">Role</th>
         <th width="150" align="center">Github</th>
@@ -94,7 +93,7 @@
 
 <tbody>
     <tr>
-       <td width="50" align="center">김연준</td>
+       <td width="100" align="center">김연준</td>
 		<td width="250" align="center">고려대학교 컴퓨터공학과</td>
         <td width="250" align="center">App Frame</td>
         <td width="150" align="center">	
@@ -104,7 +103,7 @@
         </td>
     </tr>
     <tr>
-        <td width="50" align="center">김진녕</td>
+        <td width="100" align="center">김진녕</td>
 		<td width="250" align="center">성균관대학교 소프트웨어학과</td>
         <td width="250" align="center">App Development</td>
         <td width="150" align="center">	
@@ -114,7 +113,7 @@
         </td>
     </tr>
     <tr>
-        <td width="50" align="center">서희</td>
+        <td width="100" align="center">서희</td>
 		<td width="250" align="center">숙명여자대학교 IT공학과</td>
         <td width="250" align="center">App Design, Data Analysis</td>
         <td width="150" align="center">	
@@ -124,7 +123,7 @@
         </td>
     </tr>
     <tr>
-        <td width="50" align="center">김명승</td>
+        <td width="100" align="center">김명승</td>
 		<td width="250" align="center">중앙대학교 소프트웨어학부</td>
         <td width="250" align="center">Infra, Backend Development</td>
         <td width="150" align="center">	
