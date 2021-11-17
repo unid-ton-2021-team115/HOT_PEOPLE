@@ -15,7 +15,9 @@
   </p>
 </div>
 
-<img src="images/appdesign.png" class="center">
+<p align="center">
+<img src="images/appdesign.png">
+</p>
 
 ---
 
