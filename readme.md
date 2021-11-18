@@ -19,7 +19,7 @@
 
 
 
-# About The Project
+# About This Project
 
 
 **HOT PEOPLE**은 매일 빠르게 변화하는 지역별 핫플레이스를 한눈에 볼 수 있고, 새로운 인연을 위한 1:1 매칭을 지원해주는 앱 어플리케이션 서비스 입니다.
@@ -30,6 +30,7 @@
 </p>
 <br>
 <br>
+
 본 프로젝트는 [UNI-DTHON 2021](https://www.unidthon.com/uni-dthon-2021-1) 해커톤 트랙 출품 및 은상 수상작으로, 실제 서비스를 제공하지 않습니다.
 
 <br>
@@ -202,7 +203,7 @@
 </table>
 <br>
 <br>
-
+<br>
 
 # Tech Used
 
@@ -224,6 +225,7 @@
 
 <br>
 <br>
+<br>
 
 # Data Algorithm
 
@@ -233,10 +235,12 @@
 <p align="center">
 <img src="images/instaloc.png">
 </p>
-<br>
 
 3. [Google Place API](https://developers.google.com/maps/documentation/places/web-service/overview)로 해당 위치의 상세 정보 불러올 수 있습니다.
 
+<br>
+<br>
+<br>
 
 # Expandability
 1. 인스타그램에서 스크래핑한 게시물 사진 표시
