@@ -48,14 +48,14 @@
 
 앱 접속 시, 오늘의 핫플레이스를 바로 확인하실 수 있습니다
 <p align="center">
-<img src="images/f1.png">
+<img src="images/f1.gif">
 </p>
 <br>
 
 하단의 테마 버튼을 선택하면 **맛집 / 카페 / 술집 / 문화·예술** 테마에 맞는 핫플레이스를 볼 수 있습니다.
 <br>
 <p align="center">
-<img src="images/f2.png">
+<img src="images/f2.gif">
 </p>
 <br>
 
