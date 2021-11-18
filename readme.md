@@ -30,7 +30,7 @@
 </p>
 <br>
 <br>
-본 프로젝트는 [**UNI-DTHON 2021**](https://www.unidthon.com/uni-dthon-2021-1) 해커톤 트랙 출품 및 은상 수상작으로, 실제 서비스를 제공하지 않습니다.
+본 프로젝트는 [UNI-DTHON 2021](https://www.unidthon.com/uni-dthon-2021-1) 해커톤 트랙 출품 및 은상 수상작으로, 실제 서비스를 제공하지 않습니다.
 
 <br>
 <br>
