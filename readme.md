@@ -146,6 +146,14 @@
 <br>
 <br>
 
+
+# Architecture
+
+<img src="images/architecture.png">
+</p>
+<br>
+<br>
+
 # Team Member
 
 <table width="900">
